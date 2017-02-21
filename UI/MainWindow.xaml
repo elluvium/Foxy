@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Goal Analyzer" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions></Grid.ColumnDefinitions> <!-- for future -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0" Background="AliceBlue" Height="20" VerticalAlignment="Top">
+            <MenuItem Header="File" Height="20">
+                <MenuItem Header="New Business System"></MenuItem>
+                <MenuItem Header="Open"></MenuItem>
+                <MenuItem Header="Open Recent"></MenuItem>
+                <MenuItem Header="Close Business System"></MenuItem>
+                <Separator/>
+                <MenuItem Header="Save"></MenuItem>
+                <MenuItem Header="Save as.."></MenuItem>
+                <Separator/>
+                <MenuItem Header="Export">
+                    <MenuItem Header="To PDF file"></MenuItem>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Exit" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About"></MenuItem>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
