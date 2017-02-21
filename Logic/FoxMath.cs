@@ -17,7 +17,7 @@ namespace Logic
         /// </summary>
         /// <param name="matrix">Square matrix of Int32's</param>
         /// <returns>(input matrix) ^ 2</returns>
-        public static int[,] ExponentiateMatrix(int[,] matrix) // TODO Add data-driven unit-tests
+        public static int[,] ExponentiateMatrix(int[,] matrix)
         {
             var temp = Matrix<int>.Build.DenseOfArray(matrix);
             temp.Multiply(temp);
