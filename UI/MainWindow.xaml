@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Goal Analyzer" Height="350" Width="525">
+        Title="Goal Analyzer" Height="350" Width="525" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions></Grid.ColumnDefinitions> <!-- for future -->
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Background="AliceBlue" Height="20" VerticalAlignment="Top">
             <MenuItem Header="File" Height="20">
-                <MenuItem Header="New Business System"></MenuItem>
+                <MenuItem Header="New Business System" Click="NewBusinessSystemWindow_Click"></MenuItem>
                 <MenuItem Header="Open"></MenuItem>
                 <MenuItem Header="Open Recent"></MenuItem>
                 <MenuItem Header="Close Business System"></MenuItem>
@@ -35,5 +35,6 @@
                 <MenuItem Header="About"></MenuItem>
             </MenuItem>
         </Menu>
+        
     </Grid>
 </Window>

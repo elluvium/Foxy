@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using UI.OtherWindows;
 
-namespace UI
+namespace UI.OtherWindows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for NewBusinessSystem.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NewBusinessSystem : Window
     {
-        public MainWindow()
+        public NewBusinessSystem()
         {
             InitializeComponent();
-        }
-
-        private void NewBusinessSystemWindow_Click(object sender, RoutedEventArgs e)
-        {
-            NewBusinessSystem newBusinessSystem = new NewBusinessSystem();
-            newBusinessSystem.Show();
         }
     }
 }
