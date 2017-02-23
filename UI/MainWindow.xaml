@@ -28,6 +28,9 @@
                 <Separator/>
                 <MenuItem Header="Exit" ></MenuItem>
             </MenuItem>
+            <MenuItem Header="Edit" Height="20">
+                <MenuItem Header="Edit Business System Info"></MenuItem>
+            </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Header="About"></MenuItem>
             </MenuItem>
