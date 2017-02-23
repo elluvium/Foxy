@@ -17,10 +17,10 @@ namespace Logic
         /// </summary>
         /// <param name="matrix">Square matrix of Int32's</param>
         /// <returns>(input matrix) ^ 2</returns>
-        public static int[,] ExponentiateMatrix(int[,] matrix)
+        public static double[,] ExponentiateMatrix(double[,] matrix)
         {
-            var temp = Matrix<int>.Build.DenseOfArray(matrix);
-            temp.Multiply(temp);
+            var temp = Matrix<double>.Build.DenseOfArray(matrix);
+            temp.Multiply(temp, temp);
 
             return temp.ToArray();
         }
