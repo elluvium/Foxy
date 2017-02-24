@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,17 @@ namespace UI.OtherWindows
         public NewBusinessSystem()
         {
             InitializeComponent();
+        }
+
+        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel spreadsheets (*.xls;*.xlsx)|*.xls;*.xlsx|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // TODO Attach list of goals to current BusinessSystem
+                GoalsTable.ItemsSource = Data.DataHelper.ReadFromXLSX(openFileDialog.FileName);
+            }
         }
     }
 }
