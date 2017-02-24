@@ -15,7 +15,7 @@ namespace Logic.Tests
         // TODO Implement data-driven unit test for ExponentiateMatrix
         //i can't understand what test should do exactly(boolship), below i give you my variant of implementation 
         [TestMethod()]
-        public void ExponentiateMatrixTest()
+        public void ExponentiateMatrixTest_ReturnMultiplicateMatrix()
         {
             double[,] matrix = { {1, 1, 1}, {0, 0, 1}, {0, 0, 1} };
             double[,] expectedMatrix = { { 1, 1, 3 }, { 0, 0, 1 }, { 0, 0, 1 } };

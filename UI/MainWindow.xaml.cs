@@ -29,7 +29,7 @@ namespace UI
         private void NewBusinessSystemWindow_Click(object sender, RoutedEventArgs e)
         {
             NewBusinessSystem newBusinessSystem = new NewBusinessSystem();
-            newBusinessSystem.Show();
+            bool? dialogResult = newBusinessSystem.ShowDialog();
         }
     }
 }
