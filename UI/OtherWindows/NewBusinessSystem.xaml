@@ -40,7 +40,7 @@
 
         <Label Content="Goals" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="1 1 1 1"/>
         <Button x:Name="ImportButton" Content="Import from .xlsx..." FontSize="10" Grid.Column="1" Grid.Row="3" Width="90" Height="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 5 7 15" Click="ImportButton_Click" />
-        <DataGrid x:Name="GoalsTable" Grid.Row="3" Grid.Column="0" MinHeight="50" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1">
+        <DataGrid AutoGenerateColumns="False" x:Name="GoalsTable" Grid.Row="3" Grid.Column="0" MinHeight="50" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Index" Width="70" 
                              Binding="{Binding Path=Index}"></DataGridTextColumn>

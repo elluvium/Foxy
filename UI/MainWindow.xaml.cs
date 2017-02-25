@@ -31,5 +31,11 @@ namespace UI
             NewBusinessSystem newBusinessSystem = new NewBusinessSystem();
             bool? dialogResult = newBusinessSystem.ShowDialog();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow newAboutWindow = new AboutWindow();
+            bool? dialogResult = newAboutWindow.ShowDialog();
+        }
     }
 }

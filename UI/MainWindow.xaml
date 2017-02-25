@@ -32,7 +32,7 @@
                 <MenuItem Header="Edit Business System Info"></MenuItem>
             </MenuItem>
             <MenuItem Header="Help">
-                <MenuItem Header="About"></MenuItem>
+                <MenuItem Header="About" Click="MenuItem_Click" ></MenuItem>
             </MenuItem>
         </Menu>
         
