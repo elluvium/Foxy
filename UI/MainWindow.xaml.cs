@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.OtherWindows;
+using Data;
 
 namespace UI
 {
@@ -21,6 +22,8 @@ namespace UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static BusinessSystem currentBS = new BusinessSystem();
+
         public MainWindow()
         {
             InitializeComponent();

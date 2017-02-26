@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Data;
 
 namespace UI.OtherWindows
 {
@@ -45,6 +46,57 @@ namespace UI.OtherWindows
                         MessageBoxImage.Information);
                 }              
             }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            BusinessSystem newBS = new BusinessSystem();
+
+            newBS.Title = TitleTextbox.Text;
+            newBS.Vision = VisionTextbox.Text;
+            newBS.Mission = MissionTextbox.Text;
+            newBS.GlobalGoal = GlobalGoalTextbox.Text;
+
+            // TODO
+        }
+
+        private void FuncZoneDataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            var defaultItems = new List<string>();
+
+            defaultItems.Add("Производство");
+            defaultItems.Add("Материально-техническая снабжение");
+            defaultItems.Add("Материально-техническая база");
+            defaultItems.Add("Финансы");
+            defaultItems.Add("Менеджмент");
+            defaultItems.Add("Персонал");
+            defaultItems.Add("Маркетинг");
+            defaultItems.Add("Имидж");
+
+            var grid = sender as DataGrid;
+            grid.ItemsSource = defaultItems;
+        }
+
+        private void KeyAreasDataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            var defaultItems = new List<string>();
+
+            defaultItems.Add("Положение на рынке");
+            defaultItems.Add("Инновации");
+            defaultItems.Add("Производительность");
+            defaultItems.Add("Ресурсы");
+            defaultItems.Add("Доходность (прибыльность)");
+            defaultItems.Add("Управленческие аспекты");
+            defaultItems.Add("Персонал");
+            defaultItems.Add("Социальная ответственность");
+
+            var grid = sender as DataGrid;
+            grid.ItemsSource = defaultItems;
         }
     }
 }
