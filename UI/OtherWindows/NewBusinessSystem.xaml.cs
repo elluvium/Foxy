@@ -31,8 +31,19 @@ namespace UI.OtherWindows
             openFileDialog.Filter = "Excel spreadsheets (*.xls;*.xlsx)|*.xls;*.xlsx|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
-                // TODO Attach list of goals to current BusinessSystem
-                GoalsTable.ItemsSource = Data.DataHelper.ReadFromXLSX(openFileDialog.FileName);
+                try
+                {
+                    GoalsTable.ItemsSource = Data.DataHelper.ReadFromXLSX(openFileDialog.FileName);
+                }
+                catch (System.IO.IOException exception)
+                {
+                    MessageBox.Show(
+                        this, 
+                        exception.Message + "\n" + "Try to close all windows using this file and try again.", 
+                        "Cannot access the file", 
+                        MessageBoxButton.OK, 
+                        MessageBoxImage.Information);
+                }              
             }
         }
     }

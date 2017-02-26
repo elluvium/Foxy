@@ -1,5 +1,6 @@
 ﻿using Excel.Helper;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Data
@@ -10,9 +11,12 @@ namespace Data
         {
             List<Goal> result = new List<Goal>();
 
-            using (ExcelDataReaderHelper excelHelper = new ExcelDataReaderHelper(fullPath))
+            using (var stream = File.OpenRead(fullPath))
             {
-                result = excelHelper.GetRange<Goal>(0, 1, 1).ToList();
+                using (ExcelDataReaderHelper excelHelper = new ExcelDataReaderHelper(stream))
+                {
+                    result = excelHelper.GetRange<Goal>(0, 1, 1).ToList();
+                }
             }
 
             return result;
