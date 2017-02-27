@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.OtherWindows"
         mc:Ignorable="d"
-        Title="About" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="About" Height="350" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.jpg">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <!--<Image Source="../Images/pic1.jpg" Width="200" Height="200" Margin="10 8 7 1"></Image>-->
-        <Label Content="Goal Analyzer v.1.0.0.0" FontWeight="Bold" FontSize="18" Grid.Row="1" VerticalAlignment="Center" Margin="100 10 10 10"></Label>
-        <Label Content="An application for analysis of business system goals" FontWeight="Bold" FontSize="14" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 50 10 10"></Label>
-        <Label Content="License: GPL 3.0" Grid.Row="1" Margin="100 100 10 10" FontWeight="Thin"  VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <Label Content="Authors: V. Penchak, V. Kostalan, I. Rudchenko" Grid.Row="1" Margin="100 135 10 10" FontWeight="Thin"  VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <Label Content="I. Morhun, S. Kostenko" Grid.Row="1" Margin="148 170 10 10" FontWeight="Thin"  VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        
-        <Label Content="Repository: " Grid.Row="1" Margin="100 200 10 10" FontWeight="Thin"  VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        <TextBlock Grid.Row="1" Margin="168 217 10 10">
+        <Image Grid.Row="0" Source="../Images/ico.jpg" Width="150" Height="150" Margin="10 0 7 1"></Image>
+        <Label Content="Goal Analyzer v.1.0.0.0" FontWeight="Bold" FontSize="18" Grid.Row="1" VerticalAlignment="Top" Margin="140 1 10 10"></Label>
+        <Label Content="An application for analysis of business system goals" FontWeight="Bold" FontSize="14" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20 30 10 10"></Label>
+        <Label Content="License: GPL 3.0" Grid.Row="1" Margin="100 60 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Label Content="Authors: V. Penchak, V. Kostalan, I. Rudchenko" Grid.Row="1" Margin="100 80 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Label Content="I. Morhun, S. Kostenko" Grid.Row="1" Margin="148 100 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+
+        <Label Content="Repository: " Grid.Row="1" Margin="100 120 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <TextBlock Grid.Row="1" Margin="168 125 10 10">
             <Hyperlink NavigateUri="https://github.com/elluvium/Foxy" Click="Hyperlink_Click">github.com</Hyperlink>
         </TextBlock>
     </Grid>

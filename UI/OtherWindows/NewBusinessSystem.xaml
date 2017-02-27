@@ -8,7 +8,7 @@
         x:Name="NewBusinessSystemWindow" 
         MinHeight="585" Height="{Binding ElementName=NewBusinessSystemWindow, Path=MinHeight}" 
         MinWidth="410"  Width="{Binding ElementName=NewBusinessSystemWindow, Path=MinWidth}"
-        Title="New Business System" WindowStartupLocation="CenterScreen">
+        Title="New Business System" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.jpg">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
