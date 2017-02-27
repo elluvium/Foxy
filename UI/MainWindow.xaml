@@ -7,12 +7,15 @@
         mc:Ignorable="d"
         Title="Goal Analyzer" Height="350" Width="525" WindowStartupLocation="CenterScreen" Icon="Images/ico.jpg">
     <Grid>
-        <Grid.ColumnDefinitions></Grid.ColumnDefinitions> <!-- for future -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Grid.Column="0" Background="AliceBlue" Height="20" VerticalAlignment="Top">
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="AliceBlue" Height="20" VerticalAlignment="Top">
             <MenuItem Header="File" Height="20">
                 <MenuItem Header="New Business System" Click="NewBusinessSystemWindow_Click"></MenuItem>
                 <MenuItem Header="Open"></MenuItem>
@@ -35,6 +38,79 @@
                 <MenuItem Header="About" Click="MenuItem_Click" ></MenuItem>
             </MenuItem>
         </Menu>
-        
+        <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <TabItem Header="Goals Table">
+                <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="GoalsTable" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Index" Width="70" 
+                             Binding="{Binding Path=Index}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Content" Width="*"
+                             Binding="{Binding Path=Content}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Provides for" Width="*"
+                             Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Adjacency matrices">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Column="0" Grid.Row="0" Header="Matrix A^n" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="Matrix1" MinHeight="50" MinWidth="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </GroupBox>
+
+                    <GroupBox Grid.Column="1" Grid.Row="0" Header="Matrix A^2" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="Matrix2" MinHeight="50" MinWidth="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </GroupBox>
+
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="Matrix A^n" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="Matrix3" MinHeight="50" MinWidth="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </GroupBox>
+
+                    <GroupBox Grid.Column="1" Grid.Row="1" Header="Matrix A^n" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid>
+                            <Label Content="Number of levels: " VerticalAlignment="Top"></Label>
+                            <TextBox x:Name="TitleTextbox" Grid.Row="0" Height="20" Width="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 4 0 0" ></TextBox>
+                            <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="MatrixAnalyse" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 30 0 0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Index" Width="50" 
+                             Binding="{Binding Path=Index}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Goal Text" Width="*"
+                             Binding="{Binding Path=GoalText}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Provides for" Width="*"
+                             Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="provider priority" Width="*"
+                             Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="provider priority" Width="*"
+                             Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Goal Tree">
+                <TreeView Name="GoalsTreeView" Margin="5">
+                    <TreeView.ItemTemplate >
+                        <HierarchicalDataTemplate ItemsSource="{Binding Path=Goal}">
+                            <TextBlock Text="{Binding Path=GoalName}"/>
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=SubGoal}"></TextBlock>
+                                </DataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </TabItem>
+            <TabItem Header="Goal Graph">Do you really wanna implement this functional?</TabItem>
+        </TabControl>
     </Grid>
 </Window>
