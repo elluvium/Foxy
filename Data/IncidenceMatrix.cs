@@ -25,7 +25,7 @@ namespace Data
             {
                 foreach (var col in tree)
                 {
-                    if (row.Descendants.Contains(col) || row == col)
+                    if (row.Descendants.Contains(col))
                     {
                         this[row.Value, col.Value] = 1;
                     }

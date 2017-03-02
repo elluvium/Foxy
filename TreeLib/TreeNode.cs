@@ -10,11 +10,11 @@ namespace TreeLib
     {
         public T Value { get; set; }
 
-        //internal HashSet<TreeNode<T>> ancestors = new HashSet<TreeNode<T>>();
+        internal HashSet<TreeNode<T>> ancestors = new HashSet<TreeNode<T>>();
 
         internal HashSet<TreeNode<T>> descendants = new HashSet<TreeNode<T>>();
 
-        //public IEnumerable<TreeNode<T>> Ancestors => ancestors;
+        public IEnumerable<TreeNode<T>> Ancestors => ancestors;
 
         public IEnumerable<TreeNode<T>> Descendants => descendants;
 
@@ -46,7 +46,19 @@ namespace TreeLib
             return result;
         }
 
-
+        internal HashSet<TreeNode<T>> GetSameLevelNodes(int level)
+        {
+            if (level == 0)
+            {
+                return new HashSet<TreeNode<T>>() { this };
+            }
+            var result = new HashSet<TreeNode<T>>();
+            foreach (var descendant in Descendants)
+            {
+                result.UnionWith(descendant.GetSameLevelNodes(level - 1));
+            }
+            return result;
+        }
 
     }
 }

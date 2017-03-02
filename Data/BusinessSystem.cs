@@ -12,6 +12,6 @@ namespace Data
         public List<string> FunctionalZones { get; set; }
         public List<string> KeyAreas { get; set; }
 
-        public List<Goal> Goals { get; set; }
+        public TreeLib.Tree<Goal> GoalTree { get; set; }
     }
 }

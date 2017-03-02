@@ -21,26 +21,28 @@ namespace TreeLib
             _nodesHeap.Add(_root);
         }
 
-        public TreeNode<T> Add(T value, TreeNode<T> ancestor)
+        public virtual TreeNode<T> Add(T value, IList<TreeNode<T>> ancestors)
         {
-            if (!_nodesHeap.Contains(ancestor))
-            {
-                throw new InvalidOperationException();
-            }
             var newNode = new TreeNode<T>(value);
-            ancestor.descendants.Add(newNode);
+            foreach (var ancestor in ancestors)
+            {
+                if (!_nodesHeap.Contains(ancestor))
+                {
+                    throw new InvalidOperationException();
+                }
+                ancestor.descendants.Add(newNode);
+                newNode.ancestors.Add(ancestor);
+            }
             _nodesHeap.Add(newNode);
             return newNode;
         }
 
-        public void Remove(TreeNode<T> node)
+        public virtual void Remove(TreeNode<T> node)
         {
-            var ancestor = _nodesHeap.FirstOrDefault(x => x.Descendants.Contains(node));
-            if (ancestor == null)
+            foreach(var ancestor in node.ancestors)
             {
-                throw new InvalidOperationException();
+                ancestor.descendants.Remove(node);
             }
-            ancestor.descendants.Remove(node);
             _nodesHeap.Remove(node);
             removeDescendants(node);
         }
@@ -51,8 +53,15 @@ namespace TreeLib
             {
                 foreach (var descendant in node.Descendants)
                 {
-                    _nodesHeap.Remove(descendant);
-                    removeDescendants(descendant);
+                    if (descendant.Ancestors.Count() == 1)
+                    {
+                        _nodesHeap.Remove(descendant);
+                        removeDescendants(descendant);
+                    }
+                    else
+                    {
+                        descendant.ancestors.Remove(node);
+                    }
                 }
             }
         }
@@ -60,7 +69,24 @@ namespace TreeLib
         public IEnumerator<TreeNode<T>> GetEnumerator() => _nodesHeap.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public T[] ToArrayByBreadthFirstIndexation() { throw new NotImplementedException(); }
+        public T[] ToArrayByDepthIndexation() => CollectByDepthIndexation(Root).ToArray();
+
+        private HashSet<T> CollectByDepthIndexation(TreeNode<T> node)
+        {
+            var set = new HashSet<T>();
+            set.Add(node.Value);
+            foreach(var descendant in node.Descendants)
+            {
+                var nextLevel = CollectByDepthIndexation(descendant);
+                foreach (var element in nextLevel)
+                {
+                    set.Add(element);
+                }
+            }
+            return set;
+        }
+
+        public IEnumerable<TreeNode<T>> GetByTheSameLevel(int level) => Root.GetSameLevelNodes(level);
 
     }
 }
