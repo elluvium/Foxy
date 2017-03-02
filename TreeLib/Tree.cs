@@ -17,7 +17,7 @@ namespace TreeLib
 
         public Tree(T rootValue)
         {
-            _root = new TreeNode<T>(rootValue, null);
+            _root = new TreeNode<T>(rootValue);
             _nodesHeap.Add(_root);
         }
 
@@ -27,7 +27,7 @@ namespace TreeLib
             {
                 throw new InvalidOperationException();
             }
-            var newNode = new TreeNode<T>(value, ancestor);
+            var newNode = new TreeNode<T>(value);
             ancestor.descendants.Add(newNode);
             _nodesHeap.Add(newNode);
             return newNode;
@@ -35,12 +35,12 @@ namespace TreeLib
 
         public void Remove(TreeNode<T> node)
         {
-            if (!_nodesHeap.Contains(node))
+            var ancestor = _nodesHeap.FirstOrDefault(x => x.Descendants.Contains(node));
+            if (ancestor == null)
             {
                 throw new InvalidOperationException();
             }
-            var parent = node.Ancestor;
-            parent.descendants.Remove(node);
+            ancestor.descendants.Remove(node);
             _nodesHeap.Remove(node);
             removeDescendants(node);
         }
@@ -59,6 +59,8 @@ namespace TreeLib
 
         public IEnumerator<TreeNode<T>> GetEnumerator() => _nodesHeap.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public T[] ToArrayByBreadthFirstIndexation() { throw new NotImplementedException(); }
 
     }
 }

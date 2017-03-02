@@ -55,6 +55,7 @@
     <Compile Include="BusinessSystem.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="Goal.cs" />
+    <Compile Include="IncidenceMatrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

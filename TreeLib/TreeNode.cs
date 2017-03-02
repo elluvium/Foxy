@@ -10,22 +10,21 @@ namespace TreeLib
     {
         public T Value { get; set; }
 
-        internal TreeNode<T> ancestor;
+        //internal HashSet<TreeNode<T>> ancestors = new HashSet<TreeNode<T>>();
 
         internal HashSet<TreeNode<T>> descendants = new HashSet<TreeNode<T>>();
 
-        public TreeNode<T> Ancestor => ancestor;
+        //public IEnumerable<TreeNode<T>> Ancestors => ancestors;
 
-        public HashSet<TreeNode<T>> Descendants => descendants;
+        public IEnumerable<TreeNode<T>> Descendants => descendants;
 
         public bool HasDescendants => descendants != null && descendants.Count() != 0;
 
-        public TreeNode(TreeNode<T> ancestor)
+        public TreeNode()
         {
-            this.ancestor = ancestor;
         }
 
-        public TreeNode(T value, TreeNode<T> ancestor) : this(ancestor)
+        public TreeNode(T value) 
         {
             Value = value;
         }
@@ -46,5 +45,8 @@ namespace TreeLib
             }
             return result;
         }
+
+
+
     }
 }
