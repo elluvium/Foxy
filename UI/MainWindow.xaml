@@ -18,12 +18,12 @@
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="AliceBlue" Height="20" VerticalAlignment="Top">
             <MenuItem Header="File" Height="20">
                 <MenuItem Header="New Business System" Click="NewBusinessSystemWindow_Click"></MenuItem>
-                <MenuItem Header="Open"></MenuItem>
+                <MenuItem x:Name="OpenMenuItem" Header="Open..." Click="OpenMenuItem_Click"></MenuItem>
                 <MenuItem Header="Open Recent"></MenuItem>
                 <MenuItem Header="Close Business System"></MenuItem>
                 <Separator/>
                 <MenuItem Header="Save"></MenuItem>
-                <MenuItem Header="Save as.."></MenuItem>
+                <MenuItem x:Name="SaveAsMenuItem" Header="Save as..." Click="SaveAsMenuItem_Click"></MenuItem>
                 <Separator/>
                 <MenuItem Header="Export">
                     <MenuItem Header="To PDF file"></MenuItem>

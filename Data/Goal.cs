@@ -1,5 +1,8 @@
-﻿namespace Data
+﻿using System;
+
+namespace Data
 {
+    [Serializable]
     public class Goal
     {
         public uint Index { get; set; }

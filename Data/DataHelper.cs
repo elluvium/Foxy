@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Data
 {
@@ -20,6 +21,29 @@ namespace Data
             }
 
             return result;
+        }
+
+        public static void SerializeBS(BusinessSystem bs, string fullPath)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            using (FileStream fs = new FileStream(fullPath, FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, bs);
+            }
+        }
+
+        public static BusinessSystem DeserializeBS(string fullPath)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            BusinessSystem deserializedBS = new BusinessSystem();
+
+            using (FileStream fs = new FileStream(fullPath, FileMode.OpenOrCreate))
+            {
+                deserializedBS = (BusinessSystem)formatter.Deserialize(fs);
+            }
+
+            return deserializedBS;
         }
     }
 }

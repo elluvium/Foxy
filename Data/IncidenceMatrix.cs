@@ -7,6 +7,7 @@ using TreeLib;
 
 namespace Data
 {
+    [Serializable]
     public class IncidenceMatrix<T>
     {
         int[,] _data;

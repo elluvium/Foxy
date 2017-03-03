@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Data
 {
+    [Serializable]
     public class BusinessSystem
     {
         public string Title { get; set; }
@@ -12,6 +14,6 @@ namespace Data
         public List<string> FunctionalZones { get; set; }
         public List<string> KeyAreas { get; set; }
 
-        public List<Goal> Goals { get; set; }
+        public IncidenceMatrix<Goal> GoalsIncidenceMatrix { get; set; }
     }
 }

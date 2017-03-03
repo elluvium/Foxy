@@ -62,7 +62,10 @@ namespace UI.OtherWindows
             newBS.Mission = MissionTextbox.Text;
             newBS.GlobalGoal = GlobalGoalTextbox.Text;
 
-            // TODO
+            // TODO Finalize BS creation
+
+
+            MainWindow.currentBS = newBS;
         }
 
         private void FuncZoneDataGrid_Loaded(object sender, RoutedEventArgs e)
