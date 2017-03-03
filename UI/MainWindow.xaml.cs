@@ -85,8 +85,8 @@ namespace UI
         private void TestInitBS()
         {
             Tree<Goal> testGoalTree = new Tree<Goal>(new Goal() { Index = 1, Content = "Goal content 1" });
-            testGoalTree.Add(new Goal() { Index = 2, Content = "Goal content 2" }, testGoalTree.Root);
-            testGoalTree.Add(new Goal() { Index = 3, Content = "Goal content 3" }, testGoalTree.Root);
+            testGoalTree.Add(new Goal() { Index = 2, Content = "Goal content 2" }, new List<TreeNode<Goal>>() { testGoalTree.Root });
+            testGoalTree.Add(new Goal() { Index = 3, Content = "Goal content 3" }, new List<TreeNode<Goal>>() { testGoalTree.Root });
 
             currentBS = new BusinessSystem()
             {
