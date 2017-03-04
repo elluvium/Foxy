@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.OtherWindows"
         mc:Ignorable="d"
-        Title="About" Height="350" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.jpg">
+        Title="About" Height="350" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0" Source="../Images/ico.jpg" Width="150" Height="150" Margin="10 0 7 1"></Image>
+        <Image Grid.Row="0" Source="../Images/logo.jpg" Width="150" Height="150" Margin="10 0 7 1"></Image>
         <Label Content="Goal Analyzer v.1.0.0.0" FontWeight="Bold" FontSize="18" Grid.Row="1" VerticalAlignment="Top" Margin="140 1 10 10"></Label>
         <Label Content="An application for analysis of business system goals" FontWeight="Bold" FontSize="14" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20 30 10 10"></Label>
         <Label Content="License: GPL 3.0" Grid.Row="1" Margin="100 60 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
