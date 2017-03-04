@@ -33,10 +33,12 @@
         <Separator Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="4 120 7 1" />
 
         <Label Content="Functional Zones" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="1 1 1 1"/>
-        <DataGrid Loaded="FuncZoneDataGrid_Loaded" x:Name="FuncZoneDataGrid" CanUserAddRows="True" CanUserDeleteRows="True" HeadersVisibility="None" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1"/>
+        <DataGrid Loaded="FuncZoneDataGrid_Loaded" x:Name="FuncZoneDataGrid" CanUserAddRows="True" CanUserDeleteRows="True" ColumnWidth="*" HeadersVisibility="None" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1"/>
+
+
 
         <Label Content="Key Areas" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Margin="1 1 1 1"/>
-        <DataGrid Loaded="KeyAreasDataGrid_Loaded" x:Name="KeyAreasDataGrid" CanUserAddRows="True" CanUserDeleteRows="True" HeadersVisibility="None" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1"/>
+        <DataGrid Loaded="KeyAreasDataGrid_Loaded" x:Name="KeyAreasDataGrid" CanUserAddRows="True" CanUserDeleteRows="True" ColumnWidth="*" HeadersVisibility="None" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1"/>
 
         <Label Content="Goals" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="1 1 1 1"/>
         <Button x:Name="ImportButton" Content="Import from .xlsx..." FontSize="10" Grid.Column="1" Grid.Row="3" Width="90" Height="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 5 7 15" Click="ImportButton_Click" />
