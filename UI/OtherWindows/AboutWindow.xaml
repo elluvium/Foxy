@@ -15,8 +15,8 @@
         <Label Content="Goal Analyzer v.1.0.0.0" FontWeight="Bold" FontSize="18" Grid.Row="1" VerticalAlignment="Top" Margin="140 1 10 10"></Label>
         <Label Content="An application for analysis of business system goals" FontWeight="Bold" FontSize="14" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20 30 10 10"></Label>
         <Label Content="License: GPL 3.0" Grid.Row="1" Margin="100 60 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
-        <Label Content="Authors: V. Penchak, V. Kostalan, I. Rudchenko" Grid.Row="1" Margin="100 80 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
-        <Label Content="I. Morhun, S. Kostenko" Grid.Row="1" Margin="148 100 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Label Content="Authors: V. Penchak, V. Kostalan, Y. Rudchenko" Grid.Row="1" Margin="100 80 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Label Content="Y. Morhun, S. Kostenko, D. Gievsky" Grid.Row="1" Margin="148 100 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
 
         <Label Content="Repository: " Grid.Row="1" Margin="100 120 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <TextBlock Grid.Row="1" Margin="168 125 10 10">
