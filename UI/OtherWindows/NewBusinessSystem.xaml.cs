@@ -70,36 +70,38 @@ namespace UI.OtherWindows
 
         private void FuncZoneDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            var defaultItems = new List<string>();
-
-            defaultItems.Add("Производство");
-            defaultItems.Add("Материально-техническая снабжение");
-            defaultItems.Add("Материально-техническая база");
-            defaultItems.Add("Финансы");
-            defaultItems.Add("Менеджмент");
-            defaultItems.Add("Персонал");
-            defaultItems.Add("Маркетинг");
-            defaultItems.Add("Имидж");
+            var defaultItems = new[] 
+            {
+                new { funcZone = "Производство" },
+                new { funcZone = "Материально-техническая снабжение" },
+                new { funcZone = "Материально-техническая база" },
+                new { funcZone = "Финансы" },
+                new { funcZone = "Менеджмент" },
+                new { funcZone = "Персонал" },
+                new { funcZone = "Маркетинг" },
+                new { funcZone = "Имидж" }
+            };
 
             var grid = sender as DataGrid;
-            grid.ItemsSource = defaultItems;
+            grid.ItemsSource = defaultItems.ToList();
         }
 
         private void KeyAreasDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            var defaultItems = new List<string>();
-
-            defaultItems.Add("Положение на рынке");
-            defaultItems.Add("Инновации");
-            defaultItems.Add("Производительность");
-            defaultItems.Add("Ресурсы");
-            defaultItems.Add("Доходность (прибыльность)");
-            defaultItems.Add("Управленческие аспекты");
-            defaultItems.Add("Персонал");
-            defaultItems.Add("Социальная ответственность");
+            var defaultItems = new[]
+           {
+                new { keyArea = "Положение на рынке" },
+                new { keyArea = "Инновации" },
+                new { keyArea = "Производительность" },
+                new { keyArea = "Ресурсы" },
+                new { keyArea = "Доходность (прибыльность)" },
+                new { keyArea = "Управленческие аспекты" },
+                new { keyArea = "Персонал" },
+                new { keyArea = "Социальная ответственность" }
+            };
 
             var grid = sender as DataGrid;
-            grid.ItemsSource = defaultItems;
+            grid.ItemsSource = defaultItems.ToList();
         }
     }
 }
