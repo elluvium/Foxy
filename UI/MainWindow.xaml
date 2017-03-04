@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Goal Analyzer" Height="350" Width="525" WindowStartupLocation="CenterScreen" Icon="Images/ico.jpg">
+        Title="Goal Analyzer" Height="350" Width="525" WindowStartupLocation="CenterScreen" Icon="Images/ico.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
