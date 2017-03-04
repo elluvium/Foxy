@@ -117,5 +117,10 @@ namespace UI
         {
             throw new NotImplementedException();
         }
+
+        private void MenuItem_Exit(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
