@@ -1,4 +1,5 @@
 ﻿using Excel.Helper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,6 +45,15 @@ namespace Data
             }
 
             return deserializedBS;
+        }
+
+    }
+
+    public static class MathHelper
+    {
+        public static bool EqualsWithError(this double thisVariable, double variable,  double error = 0.000001)
+        {
+            return Math.Abs(thisVariable - variable) < error;
         }
     }
 }

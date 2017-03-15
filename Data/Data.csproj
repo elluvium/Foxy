@@ -55,7 +55,9 @@
     <Compile Include="BusinessSystem.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="Goal.cs" />
-    <Compile Include="IncidenceMatrix.cs" />
+    <Compile Include="Matrixes\IncidenceMatrix.cs" />
+    <Compile Include="Matrixes\NamedMatrix.cs" />
+    <Compile Include="Matrixes\PairwiseComaprisonsMatrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
