@@ -8,6 +8,7 @@ namespace Data.BusinessStructures
 {
     using Matrixes;
 
+    [Serializable]
     public class Area
     {
         public string Name { get; set; }

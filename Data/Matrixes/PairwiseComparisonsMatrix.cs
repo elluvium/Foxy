@@ -11,7 +11,9 @@ namespace Data.Matrixes
     [Serializable]
     public class PairwiseComparisonsMatrix<TVariable> : NamedSquareMatrix<TVariable, double>
     {
+        [NonSerialized]
         const int defaultValue = 1;
+        [NonSerialized]
         readonly int[] pairwiseScale = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         public PairwiseComparisonsMatrix(HashSet<TVariable> variables) : base(variables) { }

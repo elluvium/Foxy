@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.BusinessStructures
 {
+    [Serializable]
     public class Intensity
     {
         public double LowerBorder { get; set; }

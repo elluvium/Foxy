@@ -14,7 +14,7 @@ namespace Data.BusinessStructures
 
 
 
-
+    [Serializable]
     public class Scope
     {
         private HashSet<Area> _areas;
