@@ -9,7 +9,7 @@ using TreeLib;
 namespace Data.Matrixes
 {
     [Serializable]
-    public class IncidenceMatrix<TVariable> : NamedMatrix<TVariable, bool>
+    public class IncidenceMatrix<TVariable> : NamedSquareMatrix<TVariable, bool>
     {
         public IncidenceMatrix(HashSet<TVariable> variables) : base(variables)
         {
@@ -83,7 +83,24 @@ namespace Data.Matrixes
             }
         }
 
-            
+        public override bool this[int row, int column]
+        {
+            get
+            {
+                return base[row, column];
+            }
+
+            set
+            {
+                if (value && base[column, row])
+                {
+                    throw new ArithmeticException();
+                }
+                base[row, column] = value;
+            }
+        }
+
+
         public int[,] ToInt32Array()
         {
             var data = GetDataArray();
@@ -100,6 +117,32 @@ namespace Data.Matrixes
                 }
             }
             return result;
+        }
+
+        public IEnumerable<TVariable> GetAncestors(TVariable variable)
+        {
+            HashSet<TVariable> variables = new HashSet<TVariable>();
+            foreach(var element in _variables.Keys)
+            {
+                if(this[element, variable])
+                {
+                    variables.Add(element);
+                }
+            }
+            return variables;
+        }
+
+        public IEnumerable<TVariable> GetDescendants(TVariable variable)
+        {
+            HashSet<TVariable> variables = new HashSet<TVariable>();
+            foreach (var element in _variables.Keys)
+            {
+                if (this[variable, element])
+                {
+                    variables.Add(element);
+                }
+            }
+            return variables;
         }
 
         public Dictionary<TVariable, int> GetNumberOfAncestorsForEachVariable()

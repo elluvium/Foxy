@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Data
 {
+    using Matrixes;
+    using BusinessStructures;
+
     [Serializable]
     public class BusinessSystem
     {
@@ -11,8 +14,12 @@ namespace Data
         public string Mission { get; set; }
         public string GlobalGoal { get; set; }
 
-        public List<string> FunctionalZones { get; set; }
-        public List<string> KeyAreas { get; set; }
+        public List<string> KeyAreas { get; set; } //?
+
+        public Scope FunctionalAreas { get; set; }
+        public Scope AmbientAreas { get; set; }
+
+
 
         public IncidenceMatrix<Goal> GoalsIncidenceMatrix { get; set; }
     }

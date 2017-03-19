@@ -16,6 +16,7 @@ using UI.OtherWindows;
 using Data;
 using Microsoft.Win32;
 using TreeLib;
+using Data.Matrixes;
 
 namespace UI
 {
@@ -94,7 +95,7 @@ namespace UI
                 Vision = "Some vision",
                 Mission = "Some mission",
                 GlobalGoal = "Some global goal",
-                FunctionalZones = new List<string>() { "fz1", "fz2", "fz3" },
+                //FunctionalZones = new List<string>() { "fz1", "fz2", "fz3" },
                 KeyAreas = new List<string>() { "ka1", "ka2", "ka3" },
                 GoalsIncidenceMatrix = new IncidenceMatrix<Goal>(testGoalTree)
             };

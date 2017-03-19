@@ -52,12 +52,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessStructures\Area.cs" />
+    <Compile Include="BusinessStructures\Aspect.cs" />
+    <Compile Include="BusinessStructures\Intensity.cs" />
+    <Compile Include="BusinessStructures\Scope.cs" />
     <Compile Include="BusinessSystem.cs" />
     <Compile Include="DataHelper.cs" />
-    <Compile Include="Goal.cs" />
+    <Compile Include="BusinessStructures\Goal.cs" />
     <Compile Include="Matrixes\IncidenceMatrix.cs" />
     <Compile Include="Matrixes\NamedMatrix.cs" />
-    <Compile Include="Matrixes\PairwiseComaprisonsMatrix.cs" />
+    <Compile Include="Matrixes\PairwiseComparisonsMatrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
