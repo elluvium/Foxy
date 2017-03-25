@@ -18,9 +18,14 @@ namespace Data
 
         public Scope FunctionalAreas { get; set; }
         public Scope AmbientAreas { get; set; }
-
-
-
         public IncidenceMatrix<Goal> GoalsIncidenceMatrix { get; set; }
+
+        public BusinessSystem()
+        {
+            KeyAreas = new List<string>();
+            FunctionalAreas = new Scope();
+            AmbientAreas = new Scope();
+            GoalsIncidenceMatrix = new IncidenceMatrix<Goal>(new HashSet<Goal>());
+        }
     }
 }

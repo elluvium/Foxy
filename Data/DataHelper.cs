@@ -7,6 +7,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Data
 {
+    using BusinessStructures;
+
     public static class DataHelper
     {
         public static List<Goal> ReadFromXLSX(string fullPath)

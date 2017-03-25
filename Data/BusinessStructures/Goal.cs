@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Data
+namespace Data.BusinessStructures
 {
     [Serializable]
     public class Goal

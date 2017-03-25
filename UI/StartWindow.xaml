@@ -1,0 +1,39 @@
+﻿<Window x:Class="UI.StartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="Business system" Height="358.667" Width="384.444" WindowStartupLocation="CenterScreen" Icon="Images/ico.png">
+    <Grid>
+        <Menu x:Name="menu" Height="20" Margin="0,-2,0,0" VerticalAlignment="Top">
+            <MenuItem x:Name="menuFile" Header="File" Height="20">
+                <MenuItem x:Name="menuFileCreate" Header="New" Height="20" Click="menuFileCreate_Click"/>
+                <Separator/>
+                <MenuItem x:Name="menuFileLoad" Header="Load" Height="20" Click="menuFileLoad_Click"/>
+                <MenuItem x:Name="menuFileSave" Header="Save" Height="20" Click="menuFileSave_Click"/>
+                <MenuItem x:Name="menuFileSaveAs" Header="Save as" Height="20" Click="menuFileSaveAs_Click"/>
+                <Separator />
+                <MenuItem x:Name="menuFileExit" Header="Exit" Height="20" Click="menuFileExit_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="menuEdit" Header="Edit" Height="20" Click="menuEdit_Click" IsEnabled="False"/>
+            <MenuItem x:Name="menuHelp" Header="Help" Height="20">
+                <MenuItem x:Name="menuHelpAbout" Header="About" Height="20" Click="menuHelpAbout_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <Label Content="Title:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="0,21,0,189.333"/>
+        <Label Content="Vision:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="0,51,0,185.333"/>
+        <Label Content="Mission:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="0,96,0,165.333"/>
+        <Label Content="Global goal:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="0,141,0,145.333"/>
+
+        <TextBox x:Name="TitleTextbox" IsEnabled="False" Grid.Row="0" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="114,26,8,0" />
+        <TextBox x:Name="VisionTextbox" IsEnabled="False" Grid.Row="0" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="114,51,8,0" />
+        <TextBox x:Name="MissionTextbox" IsEnabled="False" Grid.Row="0" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="114,96,8,0" />
+        <TextBox x:Name="GlobalGoalTextbox" IsEnabled="False" Grid.Row="0" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="114,141,8,0" />
+        <Button x:Name="buttonGoals" Content="Goals" HorizontalAlignment="Left" Margin="31,208,0,0" VerticalAlignment="Top" Width="139" Height="89" Click="buttonGoals_Click" IsEnabled="False"/>
+
+
+    </Grid>
+</Window>

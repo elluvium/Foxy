@@ -132,6 +132,8 @@ namespace Data.Matrixes
             return variables;
         }
 
+        
+
         public IEnumerable<TVariable> GetDescendants(TVariable variable)
         {
             HashSet<TVariable> variables = new HashSet<TVariable>();
@@ -143,6 +145,23 @@ namespace Data.Matrixes
                 }
             }
             return variables;
+        }
+
+        public IEnumerable<TVariable> GetAllDescendants(TVariable variable)
+        {
+            IEnumerable<TVariable> variables = GetDescendants(variable);
+            foreach(var element in variables)
+            {
+                variables.Union(GetAllDescendants(element));
+            }
+            return variables;
+        }
+
+        public IEnumerable<TVariable> GetAvailableForProvidingVariables(TVariable variable)
+        {
+            return Variables
+                .Except(GetAllDescendants(variable))
+                .Except(new TVariable[] { variable });
         }
 
         public Dictionary<TVariable, int> GetNumberOfAncestorsForEachVariable()

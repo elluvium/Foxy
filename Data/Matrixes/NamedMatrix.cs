@@ -49,7 +49,7 @@ namespace Data.Matrixes
         {
             get
             {
-                if (CheckVariables(row, column))
+                if (!CheckVariables(row, column))
                 {
                     throw new ArgumentException();
                 }
@@ -57,7 +57,7 @@ namespace Data.Matrixes
             }
             set
             {             
-                if(CheckVariables(row, column))
+                if(!CheckVariables(row, column))
                 {
                     throw new ArgumentException();
                 }
@@ -69,7 +69,7 @@ namespace Data.Matrixes
         {
             get
             {
-                if(CheckIndexes(row, column))
+                if(!CheckIndexes(row, column))
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -77,7 +77,7 @@ namespace Data.Matrixes
             }
             set
             {
-                if (CheckIndexes(row, column))
+                if (!CheckIndexes(row, column))
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -129,7 +129,7 @@ namespace Data.Matrixes
 
         public void RemoveVariable(TVariable variable)
         {
-            if(CheckVariable(variable))
+            if(!CheckVariable(variable))
             {
                 return;
             }

@@ -14,17 +14,33 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Data;
 
-namespace UI.OtherWindows
+namespace UI.Windows.BSWindows
 {
     /// <summary>
     /// Interaction logic for NewBusinessSystem.xaml
     /// </summary>
-    public partial class NewBusinessSystem : Window
+    public partial class BusinessSystemEditWindow : Window
     {
-        public NewBusinessSystem()
+        public BusinessSystemEditWindow()
         {
             InitializeComponent();
         }
+
+        public BusinessSystemEditWindow(BusinessSystem bs)
+        {
+            InitializeComponent();
+            UpdateBSView(bs);
+        }
+
+        private void UpdateBSView(BusinessSystem bs)
+        {
+            TitleTextbox.Text = bs.Title;
+            VisionTextbox.Text = bs.Vision;
+            MissionTextbox.Text = bs.Mission;
+            GlobalGoalTextbox.Text = bs.GlobalGoal;
+        }
+
+        public BusinessSystem BusinessSystem { get; private set; }
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +66,8 @@ namespace UI.OtherWindows
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DialogResult = false;
+            Close();
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
@@ -61,11 +78,10 @@ namespace UI.OtherWindows
             newBS.Vision = VisionTextbox.Text;
             newBS.Mission = MissionTextbox.Text;
             newBS.GlobalGoal = GlobalGoalTextbox.Text;
+            BusinessSystem = newBS;
 
-            // TODO Finalize BS creation
-
-
-            MainWindow.currentBS = newBS;
+            DialogResult = true;
+            Close();
         }
 
         private void FuncZoneDataGrid_Loaded(object sender, RoutedEventArgs e)

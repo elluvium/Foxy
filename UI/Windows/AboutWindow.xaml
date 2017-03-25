@@ -1,9 +1,9 @@
-﻿<Window x:Class="UI.OtherWindows.AboutWindow"
+﻿<Window x:Class="UI.Windows.AboutWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UI.OtherWindows"
+        xmlns:local="clr-namespace:UI.Windows"
         mc:Ignorable="d"
         Title="About" Height="350" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
     <Grid>
@@ -15,8 +15,8 @@
         <Label Content="Goal Analyzer v.1.0.0.0" FontWeight="Bold" FontSize="18" Grid.Row="1" VerticalAlignment="Top" Margin="140 1 10 10"></Label>
         <Label Content="An application for analysis of business system goals" FontWeight="Bold" FontSize="14" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20 30 10 10"></Label>
         <Label Content="License: GPL 3.0" Grid.Row="1" Margin="100 60 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
-        <Label Content="Authors: V. Penchak, V. Kostalan, Y. Rudchenko" Grid.Row="1" Margin="100 80 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
-        <Label Content="Y. Morhun, S. Kostenko, D. Gievsky" Grid.Row="1" Margin="148 100 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Label Content="Authors: D. Gievsky, V. Penchak, V. Kostalan," Grid.Row="1" Margin="100 80 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <Label Content="Y. Rudchenko, Y. Morhun, S. Kostenko, " Grid.Row="1" Margin="148 100 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
 
         <Label Content="Repository: " Grid.Row="1" Margin="100 120 10 10" FontWeight="Thin"  VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <TextBlock Grid.Row="1" Margin="168 125 10 10">
