@@ -19,6 +19,7 @@ using Data.Matrixes;
 
 namespace UI
 {
+    using Data.BusinessStructures;
     using Models;
     using Windows;
     using Windows.BSWindows;
@@ -79,11 +80,12 @@ namespace UI
                 return;
             }
             var goal = selected.ToGoal();
-            var windowDialog = new DialogWindow("");
+            var windowDialog = new DialogWindow("Do you really want to delete this goal?");
             if (windowDialog.ShowDialog() == true)
             {
                 currentBS.GoalsIncidenceMatrix.RemoveVariable(goal);
             }
+            dataGridGoalsTable.ItemsSource = Goals;
         }
         private void dataGridGoalDeleteThisAndSubgoals_Click(object sender, RoutedEventArgs e)
         {
@@ -113,6 +115,72 @@ namespace UI
                 }
                 dataGridGoalsTable.ItemsSource = Goals;
             }
+        }
+
+        private void menuEvaluate_Click(object sender, RoutedEventArgs e)
+        {
+            FillDataGridFullMatrix();
+            FillAllMatrixes();
+        }
+
+        private void FillDataGridFullMatrix()
+        {
+            dataGridFullMatrix.ItemsSource = IncidenceMatrixWithCalcuationsToDataArray(currentBS.GoalsIncidenceMatrix).Data.DefaultView;
+        }
+
+        private static DataArray<string> IncidenceMatrixWithCalcuationsToDataArray(IncidenceMatrix<Goal> matrix)
+        {
+            var matrixLength = matrix.Variables.Length;
+            var dataArray = new DataArray<string>(matrixLength + 3, matrixLength + 3);
+            var data = matrix.ToInt32Array();
+            var numberOfAncestors = matrix.GetNumberOfAncestorsForEachVariable().Values.ToArray();
+            var numberOfDescendants = matrix.GetNumberOfDescendantsForEachVariable().Values.ToArray();
+            var prioritiesOfAncestors = matrix.GetPrioritiesByAncestorsForEachVariable().Values.ToArray();
+            var prioritiesOfDescendants = matrix.GetPrioritiesByDescendantsForEachVariable().Values.ToArray();
+            for (int i = 1; i < matrixLength + 1; i++)
+            {
+                dataArray[i][0] = dataArray[0][i] = matrix.Variables[i - 1].Index.ToString();
+                for (int j = 1; j < matrixLength + 1; j++)
+                {
+                    dataArray[i][j] = data[i - 1, j - 1].ToString();
+                }
+                dataArray[matrixLength + 1][i] = numberOfDescendants[i - 1].ToString();
+                dataArray[i][matrixLength + 1] = numberOfAncestors[i - 1].ToString();
+                dataArray[matrixLength + 1][matrixLength + 1] = numberOfDescendants.Sum().ToString();
+                dataArray[matrixLength + 2][i] = prioritiesOfDescendants[i - 1].ToString();
+                dataArray[i][matrixLength + 2] = prioritiesOfAncestors[i - 1].ToString();
+            }
+            return dataArray;
+
+        }
+
+        private void FillAllMatrixes()
+        {
+            int[][,] allMatrixes = Logic.FoxMath.ExponentiateTillZero(currentBS.GoalsIncidenceMatrix.ToInt32Array());
+            for(int index = 0; index < allMatrixes.Length; index++)
+            {
+                tabControlMatrixPowers.Items.Add(new TabItem()
+                {
+                    Content = new DataGrid()
+                    {
+                        ItemsSource = MatrixToDataArray(allMatrixes[index]).Data.DefaultView
+                    },
+                    Header = string.Format("A^{0}", index + 1)
+                });
+            }
+        }
+
+        public static DataArray<int> MatrixToDataArray(int[,] matrix)
+        {
+            var dataArray = new DataArray<int>(matrix.GetLength(0), matrix.GetLength(1));
+            for(int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for(int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    dataArray[i][j] = matrix[i, j];
+                }
+            }
+            return dataArray;
         }
     }
 }

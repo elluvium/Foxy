@@ -214,28 +214,17 @@ namespace Data.Matrixes
             return GetNumberOfAncestorsForEachVariable().Values.Sum();
         }
 
-        public Dictionary<TVariable, int> GetPrioritiesByAncestorsForEachVariable()
+        public Dictionary<TVariable, double> GetPrioritiesByAncestorsForEachVariable()
         {
-            var dict = GetNumberOfAncestorsForEachVariable();
             var r = GetNumberOfConnections();
-            foreach (var key in dict.Keys)
-            {
-                dict[key] /= r;
-            }
-            return dict;
+            return GetNumberOfAncestorsForEachVariable().ToDictionary(x => x.Key, y => (double)y.Value / r);
         }
 
-        public Dictionary<TVariable, int> GetPrioritiesByDescendantsForEachVariable()
+        public Dictionary<TVariable, double> GetPrioritiesByDescendantsForEachVariable()
         {
-            var dict = GetNumberOfDescendantsForEachVariable();
             var r = GetNumberOfConnections();
-            foreach (var key in dict.Keys)
-            {
-                dict[key] /= r;
-            }
-            return dict;
+            return GetNumberOfDescendantsForEachVariable().ToDictionary(x => x.Key, y => (double)y.Value / r);
         }
-
     }
 
    

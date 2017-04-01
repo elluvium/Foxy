@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Goal Analyzer" Height="350" Width="525" WindowStartupLocation="CenterScreen" Icon="Images/ico.png">
+        Title="Goal Analyzer" Height="432.667" Width="602.333" WindowStartupLocation="CenterScreen" Icon="Images/ico.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -17,6 +17,7 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="AliceBlue" Height="20" VerticalAlignment="Top">
             <MenuItem x:Name="menuReturn" Header="Return" Height="20" Click="MenuItem_Exit"/>
+            <MenuItem x:Name="menuEvaluate" Header="Evaluate" Height="20" Click="menuEvaluate_Click"/>
         </Menu>
         <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <TabItem Header="Goals Table">
@@ -37,7 +38,7 @@
                              Binding="{Binding Path=Content}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Provides for" Width="*"
                              Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
-                    </DataGrid.Columns> 
+                    </DataGrid.Columns>
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem x:Name="dataGridGoalEdit" Header="Edit goal" Click="dataGridGoalEdit_Click"></MenuItem>
@@ -51,76 +52,20 @@
                     </DataGrid.ContextMenu>
                 </DataGrid>
             </TabItem>
-            <TabItem Header="Adjacency matrices">
+            <TabItem Header="Calculations">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <GroupBox Grid.Column="0" Grid.Row="0" Header="Matrix A^n" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <DataGrid AutoGenerateColumns="False" x:Name="Matrix1" MinHeight="50" MinWidth="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                  CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          CanUserReorderColumns="False"
-          CanUserResizeColumns="False"
-          CanUserResizeRows="False"
-          CanUserSortColumns="False"
-          SelectionMode="Single"
-          SelectionUnit="Cell"/>
-                    </GroupBox>
+                    <DataGrid x:Name="dataGridFullMatrix" Margin="0,0,-0.333,-0.333"/>
 
-                    <GroupBox Grid.Column="1" Grid.Row="0" Header="Matrix A^2" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <DataGrid  AutoGenerateColumns="False" x:Name="Matrix2" MinHeight="50" MinWidth="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                   CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          CanUserReorderColumns="False"
-          CanUserResizeColumns="False"
-          CanUserResizeRows="False"
-          CanUserSortColumns="False"
-          SelectionMode="Single"
-          SelectionUnit="Cell"/>
-                    </GroupBox>
-
-                    <GroupBox Grid.Column="0" Grid.Row="1" Header="Matrix A^n" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <DataGrid AutoGenerateColumns="False" x:Name="Matrix3" MinHeight="50" MinWidth="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                  CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          CanUserReorderColumns="False"
-          CanUserResizeColumns="False"
-          CanUserResizeRows="False"
-          CanUserSortColumns="False"
-          SelectionMode="Single"
-          SelectionUnit="Cell"
-                                  />
-                    </GroupBox>
-
-                    <GroupBox Grid.Column="1" Grid.Row="1" Header="Matrix A^n" Margin="1 1 1 10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid>
-                            <Label Content="Number of levels: " VerticalAlignment="Top"></Label>
-                            <TextBox x:Name="TitleTextbox" Grid.Row="0" Height="20" Width="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 4 0 0" ></TextBox>
-                            <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="MatrixAnalyse" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 30 0 0">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Index" Width="50" 
-                             Binding="{Binding Path=Index}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Goal Text" Width="*"
-                             Binding="{Binding Path=GoalText}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Provides for" Width="*"
-                             Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="provider priority" Width="*"
-                             Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="provider priority" Width="*"
-                             Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </GroupBox>
                 </Grid>
             </TabItem>
-            
+            <TabItem Header="Adjacency matrices">
+                <Grid>
+                    <TabControl x:Name="tabControlMatrixPowers" Margin="0,0,-0.333,-0.333">
+                    </TabControl>
+
+                </Grid>
+            </TabItem>
+
             <TabItem Header="Goal Tree">
                 <TreeView Name="GoalsTreeView" Margin="5">
                     <TreeView.ItemTemplate >
