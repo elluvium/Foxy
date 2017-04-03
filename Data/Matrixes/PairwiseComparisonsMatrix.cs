@@ -12,15 +12,23 @@ namespace Data.Matrixes
     public class PairwiseComparisonsMatrix<TVariable> : NamedSquareMatrix<TVariable, double>
     {
         [NonSerialized]
-        const int defaultValue = 1;
+        readonly int minimumPairwiseValue = 1;
         [NonSerialized]
-        readonly int[] pairwiseScale = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        readonly int maximumPairwiseValue = 9;
 
-        public PairwiseComparisonsMatrix(HashSet<TVariable> variables) : base(variables) { }
+        public PairwiseComparisonsMatrix(HashSet<TVariable> variables) : base(variables, 1)
+        {
+            InitializeNewVariableValuesInMatrix();
+        }
 
-        public PairwiseComparisonsMatrix(double[,] data, HashSet<TVariable> variables) : base(data, variables)
+        public PairwiseComparisonsMatrix(double[,] data, HashSet<TVariable> variables) : base(data, variables, 1)
         {
             CheckDataConsistency(data);
+        }
+
+        internal PairwiseComparisonsMatrix(IEnumerable<TVariable> variables) : base(variables, 1)
+        {
+            InitializeNewVariableValuesInMatrix();
         }
 
         private void CheckDataConsistency(double[,] data)
@@ -30,7 +38,7 @@ namespace Data.Matrixes
             {
                 for (int j = i; j < length; j++)
                 {
-                    if (!(data[i, j] * data[j, i]).EqualsWithError(defaultValue))
+                    if (!(data[i, j] * data[j, i]).EqualsWithError(DefaultValue))
                     {
                         throw new ArithmeticException();
                     }
@@ -62,25 +70,26 @@ namespace Data.Matrixes
             }
         }
 
+        private bool CheckPreference(int value)
+        {
+            return minimumPairwiseValue <= value && value <= maximumPairwiseValue;
+        }
+
         public void SetPreference(TVariable source, TVariable target, int value)
         {
 
-            if (CheckVariables(source, target))
+            if (!CheckVariables(source, target))
             {
                 throw new ArgumentException();
             }
-            if(!pairwiseScale.Contains(value))
+            if(!CheckPreference(value))
             {
-                throw new ArgumentOutOfRangeException("value is in range [1,9]");
+                throw new ArgumentOutOfRangeException("Pairwise value must be in range [1,9]");
             }
             base[source, target] = value;
-            base[target, source] = defaultValue / value;
+            base[target, source] = DefaultValue / value;
         }
 
-        protected override void InitializeNewVariableValuesInMatrix(double defaultValue = default(double))
-        {
-            base.InitializeNewVariableValuesInMatrix(defaultValue);
-        }
 
         public IDictionary<TVariable, double> CalculateLocalPriorities()
         {

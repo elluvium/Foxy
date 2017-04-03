@@ -51,6 +51,30 @@ namespace Data.BusinessStructures
             return CalculateLocalPrioritiesOfAreas(Side.Weak);
         }
 
+        public static IDictionary<Aspect, double> CalculateLocalPriorities(Matrixes.NamedSquareMatrix<Aspect,double> matrix)
+        {
+            var variables = matrix.Variables;
+            var result = new Dictionary<Aspect, double>(variables.Count());
+
+            int length = variables.Length;
+            double sum = 0;
+            foreach (var variableRow in variables)
+            {
+                double prod = 1.0;
+                foreach (var variableColumn in variables)
+                {
+                    prod *= Math.Pow(matrix[variableRow, variableColumn], 1.0 / length);
+                }
+                result.Add(variableRow, prod);
+                sum += prod;
+            }
+            foreach (var variable in variables)
+            {
+                result[variable] /= sum;
+            }
+            return result;
+        }
+
         private IDictionary<Area, double> CalculateLocalPrioritiesOfAreas(Side side)
         {
             var result = new Dictionary<Area, double>(Count);
@@ -58,7 +82,7 @@ namespace Data.BusinessStructures
             foreach (var area in _areas)
             {
                 double prod = 1.0;
-                var prosPriorities = area.matrixes[side].CalculateLocalPriorities();
+                var prosPriorities = CalculateLocalPriorities(area.matrixes[side]);
                 foreach (var aspect in prosPriorities.Keys)
                 {
                     prod *= Math.Pow(prosPriorities[aspect], 1.0 / prosPriorities.Count);
@@ -79,7 +103,7 @@ namespace Data.BusinessStructures
             var globalAspectPriorities = new Dictionary<Area, IDictionary<Aspect, double>>();
             foreach (var area in _areas)
             {
-                var globalAspectAreaPriorities = area.matrixes[side].CalculateLocalPriorities();
+                var globalAspectAreaPriorities = CalculateLocalPriorities(area.matrixes[side]);
                 foreach (var aspect in globalAspectAreaPriorities.Keys)
                 {
                     globalAspectAreaPriorities[aspect] *= localAreaPriorities[area];

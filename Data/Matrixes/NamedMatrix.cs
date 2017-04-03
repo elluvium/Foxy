@@ -9,6 +9,7 @@ namespace Data.Matrixes
     [Serializable]
     public class NamedSquareMatrix<TVariable, TDataType>
     {
+        protected TDataType DefaultValue;
 
         protected TDataType[,] _data;
         public TDataType[,] GetDataArray() => _data;
@@ -16,16 +17,39 @@ namespace Data.Matrixes
         protected IDictionary<TVariable, int> _variables;
         public TVariable[] Variables => _variables.Keys.ToArray();
 
-        public NamedSquareMatrix(HashSet<TVariable> variables)
+        internal NamedSquareMatrix(IEnumerable<TVariable> variables, TDataType defaultValue = default(TDataType))
         {
-            _data = new TDataType[variables.Count, variables.Count];
-            InitVariables(variables.ToArray());
+            Initializator(new TDataType[variables.Count(), variables.Count()], variables, defaultValue);
+            InitializeData();
         }
-        public NamedSquareMatrix(TDataType[,] data, HashSet<TVariable> variables)
+
+        public NamedSquareMatrix(HashSet<TVariable> variables, TDataType defaultValue = default(TDataType))
+        {
+            Initializator(new TDataType[variables.Count, variables.Count], variables, defaultValue);
+            InitializeData();
+        }
+        public NamedSquareMatrix(TDataType[,] data, HashSet<TVariable> variables, TDataType defaultValue = default(TDataType)) 
         {
             CheckInitData(data.GetLength(0), data.GetLength(1), variables.Count);
+            Initializator(data, variables, defaultValue);
+        }
+
+        private void Initializator(TDataType[,] data, IEnumerable<TVariable> variables, TDataType defaultValue)
+        {
+            DefaultValue = defaultValue;
             _data = data;
-            InitVariables(variables.ToArray());
+            InitVariables(variables.ToArray());           
+        }
+
+        private void InitializeData()
+        {
+            for(int i = 0; i < _data.GetLength(0); i++)
+            {
+                for(int j = 0; j < _data.GetLength(1); j++)
+                {
+                    _data[i, j] = DefaultValue;
+                }
+            }
         }
 
         private void CheckInitData(int dataRowLength, int dataColumnLength, int variablesLength)
@@ -100,13 +124,13 @@ namespace Data.Matrixes
             InitializeNewVariableValuesInMatrix();
         }
 
-        protected virtual void InitializeNewVariableValuesInMatrix(TDataType defaultValue = default(TDataType))
+        protected virtual void InitializeNewVariableValuesInMatrix()
         {
             int length = _data.GetLength(0);
             for (int i = 0; i < length; i++)
             {
-                _data[i, length - 1] = defaultValue;
-                _data[length - 1, i] = defaultValue;
+                _data[i, length - 1] = DefaultValue;
+                _data[length - 1, i] = DefaultValue;
             }
         }
 

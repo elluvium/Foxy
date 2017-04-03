@@ -57,5 +57,7 @@ namespace Data
         {
             return Math.Abs(thisVariable - variable) < error;
         }
+
+       
     }
 }
