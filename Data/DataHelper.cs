@@ -1,4 +1,5 @@
 ﻿using Excel.Helper;
+using System.Text;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,17 +10,51 @@ namespace Data
 {
     using BusinessStructures;
 
+    public class GoalExcel : Goal
+    {
+        private string _providesFor = string.Empty;
+
+        public string ProvidesFor
+        {
+            get
+            {
+                return _providesFor;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _providesFor = value;
+                }
+            }
+        }
+
+
+        public uint[] GetIndexesFromProvidesFor()
+        {
+            var stringIndexes = ProvidesFor.Split(',', ' ');
+            try
+            {
+                return stringIndexes.Where(index => index != "").Select(index => uint.Parse(index)).ToArray();
+            }
+            catch
+            {
+                throw new InvalidCastException("Wrong format of ProvidesFor field");
+            }
+        }
+    }
+
     public static class DataHelper
     {
-        public static List<Goal> ReadFromXLSX(string fullPath)
+        public static IEnumerable<GoalExcel> ReadFromXLSX(string fullPath)
         {
-            List<Goal> result = new List<Goal>();
+            List<GoalExcel> result = new List<GoalExcel>();
 
             using (var stream = File.OpenRead(fullPath))
             {
                 using (ExcelDataReaderHelper excelHelper = new ExcelDataReaderHelper(stream))
                 {
-                    result = excelHelper.GetRange<Goal>(0, 1, 1).ToList();
+                    result = excelHelper.GetRange<GoalExcel>(0, 1, 1).ToList();
                 }
             }
 
@@ -49,6 +84,25 @@ namespace Data
             return deserializedBS;
         }
 
+
+        public static Matrixes.IncidenceMatrix<Goal> Convert(IEnumerable<GoalExcel> goals)
+        {
+            var matrix = new Matrixes.IncidenceMatrix<Goal>(goals);
+            foreach(var goalExcel in goals)
+            {
+                var indexes = goalExcel.GetIndexesFromProvidesFor();
+                foreach(var index in indexes)
+                {
+                    var matchGoalExcel = goals.FirstOrDefault(x => x.Index == index);
+                    if(matchGoalExcel == null)
+                    {
+                        throw new InvalidCastException("Wrong format of ProvidesFor field: Undescribed indexes detected.");
+                    }
+                    matrix[matchGoalExcel, goalExcel] = true;
+                }
+            }
+            return matrix;
+        }
     }
 
     public static class MathHelper

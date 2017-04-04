@@ -32,7 +32,6 @@ namespace UI
     public partial class GoalWindow : Window
     {
         public BusinessSystem currentBS;
-        public string currentBSfullPath;
 
         IEnumerable<Models.GoalModelWithProvidings> Goals => currentBS.GoalsIncidenceMatrix.Variables.Select(x => new GoalModelWithProvidings(x, currentBS.GoalsIncidenceMatrix.GetAncestors(x)));
 
@@ -182,5 +181,46 @@ namespace UI
             }
             return dataArray;
         }
+
+        private void menuFileLoadFromExcel_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<GoalExcel> GoalsExcel = new List<GoalExcel>();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    GoalsExcel = DataHelper.ReadFromXLSX(openFileDialog.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Loading was unsuccessful.");
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                try
+                {
+                    currentBS.GoalsIncidenceMatrix = DataHelper.Convert(GoalsExcel); 
+                }
+                catch(InvalidCastException castExc)
+                {
+                    MessageBox.Show(castExc.Message);
+                    return;
+                }
+                catch(ArithmeticException ariExc)
+                {
+                    MessageBox.Show(ariExc.Message);
+                    return;
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Error occured during convertation.");
+                    return;
+                }
+                dataGridGoalsTable.ItemsSource = Goals;
+            }
+        }
+
     }
 }

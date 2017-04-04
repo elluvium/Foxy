@@ -15,6 +15,11 @@ namespace Data.Matrixes
         {
         }
 
+        public IncidenceMatrix(IEnumerable<TVariable> variables) : base(variables)
+        {
+
+        }
+
         public IncidenceMatrix(bool[,] matrix, HashSet<TVariable> variables) : base(matrix, variables)
         {
             if(checkMatrixForCycles(matrix))
@@ -75,9 +80,9 @@ namespace Data.Matrixes
             }
             set
             {
-                if (value && base[column, row])
+                if (value && CheckForCycles(_variables[row], _variables[column]))
                 {
-                    throw new ArithmeticException();
+                    throw new ArithmeticException("Tree structure graph: cycles are prohibited.");
                 }
                 base[row, column] = value;
             }
@@ -92,12 +97,31 @@ namespace Data.Matrixes
 
             set
             {
-                if (value && base[column, row])
+                if (value && CheckForCycles(row, column))
                 {
-                    throw new ArithmeticException();
+                    throw new ArithmeticException("Tree structure graph: cycles are prohibited.");
                 }
                 base[row, column] = value;
             }
+        }
+
+        private bool CheckForCycles(int currentvariable, int addedVariable)
+        {
+            for (int checkedVariable = 0; checkedVariable < _variables.Count; checkedVariable++)
+            {
+                if (_data[currentvariable, checkedVariable])
+                {
+                    if(checkedVariable == addedVariable)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return CheckForCycles(checkedVariable, addedVariable);
+                    }
+                }
+            }
+            return false;
         }
 
 

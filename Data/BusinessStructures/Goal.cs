@@ -5,8 +5,23 @@ namespace Data.BusinessStructures
     [Serializable]
     public class Goal
     {
+        private string _content = string.Empty;
+
         public uint Index { get; set; }
-        public string Content { get; set; }
+        public string Content
+        {
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _content = value;
+                }
+            }
+        }
 
         public override bool Equals(object obj)
         {

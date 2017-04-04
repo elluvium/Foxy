@@ -16,7 +16,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="AliceBlue" Height="20" VerticalAlignment="Top">
-            <MenuItem x:Name="menuReturn" Header="Return" Height="20" Click="MenuItem_Exit"/>
+            <MenuItem x:Name="menuFile" Header="File" Height="20">
+                <MenuItem x:Name="menuFileLoad" Header="Load..." Height="20">
+                    <MenuItem x:Name="menuFileLoadFromExcel" Header="From Excel" Height="20" Click="menuFileLoadFromExcel_Click" />
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="menuFileReturn" Header="Return" Height="20" Click="MenuItem_Exit"/>
+            </MenuItem>
             <MenuItem x:Name="menuEvaluate" Header="Evaluate" Height="20" Click="menuEvaluate_Click"/>
         </Menu>
         <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
