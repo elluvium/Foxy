@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI.Windows.ScopeWindows"
         mc:Ignorable="d"
         Title="Edit name" Height="142.514" Width="300"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
     <Grid>
         <Label x:Name="labelName" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxAreaName" Height="23" Margin="69,14,10.333,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>

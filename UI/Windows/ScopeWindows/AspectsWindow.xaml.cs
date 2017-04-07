@@ -46,6 +46,7 @@ namespace UI.Windows.ScopeWindows
             InitializeComponent();
             _area = area;
             _side = side;
+            Title = side.ToString() + " aspects";
             dataGridAspects.Items.Clear();
             UpdateAll();
         }

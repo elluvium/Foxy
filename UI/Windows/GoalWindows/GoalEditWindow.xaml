@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.Windows"
         mc:Ignorable="d"
-        Title="GoalEditWindow" Height="400.75" Width="302.699">
+        Title="Edit goal" Height="400.75" Width="302.699" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
     <Grid>
         <Label x:Name="label" Content="Index" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Content" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>

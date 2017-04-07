@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI.Windows.ScopeWindows"
         mc:Ignorable="d"
-        Title="Edit aspect" Height="267.379" Width="300" ResizeMode="NoResize">
+        Title="Edit aspect" Height="267.379" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
     <Grid Margin="0,0,-6.667,0">
         <Label x:Name="label" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="49"/>
         <GroupBox x:Name="groupBox" Header="Intensity" Margin="8,47,12.334,0" VerticalAlignment="Top" Height="129">
