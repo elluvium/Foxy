@@ -7,17 +7,72 @@ using System.Threading.Tasks;
 namespace Data.BusinessStructures
 {
     [Serializable]
-    public struct Intensity
+    public class Intensity
     {
-        public double LowerBorder { get; set; }
-        public double UpperBorder { get; set; }
-        public double NominalValue { get; set; }
+        public int _lowerBound;
+        public int _nominalValue;
+        public int _upperBound;
 
-        public Intensity(double lowerBorder, double nominalValue, double upperBorder)
+
+        public int LowerBound
         {
-            LowerBorder = lowerBorder;
-            NominalValue = nominalValue;
-            UpperBorder = upperBorder;
+            get
+            {
+                return _lowerBound;
+            }
+            private set
+            {
+                if(_lowerBound > _nominalValue || _lowerBound == _upperBound)
+                {
+                    throw new ArgumentException("LowerBound < NominalValue < UpperBound");
+                }
+                _lowerBound = value;
+            }
+        }
+
+        public int UpperBound
+        {
+            get
+            {
+                return _upperBound;
+            }
+            private set
+            {
+                if (_upperBound < _nominalValue || _lowerBound == _upperBound)
+                {
+                    throw new ArgumentException();
+                }
+                _upperBound = value;
+            }
+        }
+
+        public int NominalValue
+        {
+            get
+            {
+                return _nominalValue;
+            }
+            private set
+            {
+                if (_lowerBound > _nominalValue || _nominalValue > _upperBound)
+                {
+                    throw new ArgumentException();
+                }
+                _nominalValue = value;
+            }
+        }
+
+
+        public Intensity(int lowerBorder, int nominalValue, int upperBorder)
+        {
+            UpperBound = upperBorder;
+            LowerBound = lowerBorder;
+            NominalValue = nominalValue; 
+        }
+
+        public double GetNormalizedValue()
+        {
+            return (_nominalValue - _lowerBound) / (double) (_upperBound - _lowerBound);
         }
     }
 }

@@ -10,9 +10,9 @@
         <Label x:Name="label" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="49"/>
         <GroupBox x:Name="groupBox" Header="Intensity" Margin="8,47,12.334,0" VerticalAlignment="Top" Height="129">
             <Grid>
-                <Label x:Name="label1" Content="Up border" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="label2" Content="Current value" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="label3" Content="Down border" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label1" Content="Upper bound" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label2" Content="Nominal value" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label3" Content="Lower border" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxIntensityUpBorder" Height="23" Margin="111,14,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxIntensityCurrentValue" Height="23" Margin="111,45,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxIntensityDownBorder" Height="23" Margin="111,76,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>

@@ -29,33 +29,36 @@ namespace UI.Windows.ScopeWindows
         {
             InitializeComponent();
             textBoxAspectName.Text = aspect.Name;
-            textBoxIntensityUpBorder.Text = aspect.Intensity.UpperBorder.ToString();
+            textBoxIntensityUpBorder.Text = aspect.Intensity.UpperBound.ToString();
             textBoxIntensityCurrentValue.Text = aspect.Intensity.NominalValue.ToString();
-            textBoxIntensityDownBorder.Text = aspect.Intensity.LowerBorder.ToString();
+            textBoxIntensityDownBorder.Text = aspect.Intensity.LowerBound.ToString();
         }
 
         public string AspectName => textBoxAspectName.Text;
 
-        public Intensity Intensity => new Intensity()
-        {
-            UpperBorder = int.Parse(textBoxIntensityUpBorder.Text),
-            NominalValue = int.Parse(textBoxIntensityCurrentValue.Text),
-            LowerBorder = int.Parse(textBoxIntensityDownBorder.Text)
-        };
+        public Intensity Intensity { get; private set; }
 
 
         private void buttonOK_Click(object sender, RoutedEventArgs e)
         {
-            int buff;
+            int buffUp, buffCurr, buffLow;
             if(
-                int.TryParse(textBoxIntensityUpBorder.Text, out buff) &&
-                int.TryParse(textBoxIntensityCurrentValue.Text, out buff) &&
-                int.TryParse(textBoxIntensityDownBorder.Text, out buff)
+                int.TryParse(textBoxIntensityUpBorder.Text, out buffUp) &&
+                int.TryParse(textBoxIntensityCurrentValue.Text, out buffCurr) &&
+                int.TryParse(textBoxIntensityDownBorder.Text, out buffLow)
                 )
             {
+                try
+                {
+                    Intensity = new Intensity(buffLow, buffCurr, buffUp);
+                }
+                catch(ArgumentException argExc)
+                {
+                    MessageBox.Show(argExc.Message);
+                    return;
+                }
                 DialogResult = true;
                 Close();
-                return;
             }
             else
             {
