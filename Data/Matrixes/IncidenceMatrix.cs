@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TreeLib;
 
 namespace Data.Matrixes
 {
@@ -50,26 +49,6 @@ namespace Data.Matrixes
                 start++;
             }
             return false;
-        }
-
-
-        public IncidenceMatrix(Tree<TVariable> tree) : base(new HashSet<TVariable>(tree.Select(x => x.Value)))
-        {
-            foreach(var row in tree)
-            {
-                foreach (var col in tree)
-                {
-                    if (row.Descendants.Contains(col))
-                    {
-                        this[row.Value, col.Value] = true;
-                    }
-                    else
-                    {
-                        this[row.Value, col.Value] = false;
-                    }
-                }
-
-            }
         }
 
         public override bool this[TVariable row,TVariable column]

@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Data;
 using Microsoft.Win32;
-using TreeLib;
 using Data.Matrixes;
 
 namespace UI

@@ -201,10 +201,6 @@
       <Project>{c38439cc-7c13-4603-80d0-173256b6fb32}</Project>
       <Name>Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TreeLib\TreeLib.csproj">
-      <Project>{E8C80E23-3C7F-4F5F-BA89-AB0F91AEF8DE}</Project>
-      <Name>TreeLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.jpg" />
