@@ -56,6 +56,7 @@
     <Compile Include="BusinessStructures\Aspect.cs" />
     <Compile Include="BusinessStructures\Intensity.cs" />
     <Compile Include="BusinessStructures\Scope.cs" />
+    <Compile Include="BusinessStructures\Side.cs" />
     <Compile Include="BusinessSystem.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="BusinessStructures\Goal.cs" />

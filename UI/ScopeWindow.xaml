@@ -1,0 +1,54 @@
+﻿<Window x:Class="UI.ScopeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="ScopeWindow" Height="444.405" Width="606.122" WindowStartupLocation="CenterScreen" Icon="Images/ico.png" >
+    <Grid>
+        <Menu x:Name="menu" Height="20" VerticalAlignment="Top" Margin="0,0,0.333,0">
+            <MenuItem x:Name="menuFile" Header="File" Height="20">
+                <MenuItem x:Name="menuFileReturn" Header="Return" Height="20" Click="menuFileReturn_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="menuEvaluate" Height="20" Header="Evaluate" Click="menuEvaluate_Click"/>
+        </Menu>
+        <TabControl x:Name="tabControl" Margin="0,20,0.333,0.333">
+            <TabItem Header="Data">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="buttonAddArea" Content="Add new area" VerticalAlignment="Top" Height="30" Margin="0,0,0.333,0" Click="buttonAddArea_Click" />
+                    <DataGrid  x:Name="dataGridArea" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                           AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+          CanUserDeleteRows="False"
+          CanUserReorderColumns="False"
+          CanUserResizeColumns="False"
+          CanUserResizeRows="False"
+          CanUserSortColumns="False"
+          SelectionMode="Single"
+          SelectionUnit="FullRow" Margin="0,30,0.333,0.333"
+                               BeginningEdit="dataGridArea_BeginningEdit">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Width="*" 
+                             Binding="{Binding Path=Name}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="dataGridAreaMenuEdit" Header="Edit">
+                                    <MenuItem x:Name="dataGridAreaMenuEditName" Header="Edit name" Height="20" Click="dataGridMenyAreaEditName_Click"/>
+                                    <MenuItem x:Name="dataGridAreaMenuEditStrongAspects" Header="Strong aspects" Height="20" Click="dataGridMenyAreaEditStrongAspects_Click"/>
+                                    <MenuItem x:Name="dataGridAreaMenuEditWeakAspects" Header="Weak aspects" Height="20" Click="dataGridMenyAreaEditWeakAspects_Click"/>
+                                </MenuItem>
+                                <MenuItem x:Name="dataGridAreaMenuDelete" Header="Delete" Height="20" Click="dataGridAreaMenuDelete_Click" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Results">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

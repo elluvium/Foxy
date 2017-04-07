@@ -49,6 +49,8 @@ namespace UI
         {
             menuEdit.IsEnabled = true;
             buttonGoals.IsEnabled = true;
+            buttonInnerScope.IsEnabled = true;
+            buttonAmbient.IsEnabled = true;
         }
 
         private void UpdateBSView(BusinessSystem bs)
@@ -144,6 +146,16 @@ namespace UI
         private void menuHelpAbout_Click(object sender, RoutedEventArgs e)
         {
             new AboutWindow().ShowDialog();
+        }
+
+        private void buttonInnerScope_Click(object sender, RoutedEventArgs e)
+        {
+            new ScopeWindow(currentBS.FunctionalAreas, "Inner scope").ShowDialog();
+        }
+
+        private void buttonAmbient_Click(object sender, RoutedEventArgs e)
+        {
+            new ScopeWindow(currentBS.AmbientAreas, "Ambient").ShowDialog();
         }
     }
 }

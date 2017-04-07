@@ -18,5 +18,10 @@ namespace Data.BusinessStructures
             Name = name;
             Intensity = intensity;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

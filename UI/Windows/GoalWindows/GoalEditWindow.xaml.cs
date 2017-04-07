@@ -51,7 +51,6 @@ namespace UI.Windows.GoalWindows
 
         private void buttonOK_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
             uint buff;
             if (uint.TryParse(textBoxIndex.Text, out buff))
             {
@@ -59,6 +58,7 @@ namespace UI.Windows.GoalWindows
                 {
                     _goal = new Goal() { Index = buff, Content = textBoxContent.Text };
                 }
+                DialogResult = true;
                 Close();
             }
             else

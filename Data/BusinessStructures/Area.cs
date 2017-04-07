@@ -11,90 +11,55 @@ namespace Data.BusinessStructures
     [Serializable]
     public class Area
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        protected HashSet<Aspect> prosAspects = new HashSet<Aspect>();
-        protected HashSet<Aspect> consAspects = new HashSet<Aspect>();
+        protected Dictionary<Side, HashSet<Aspect>> aspects = new Dictionary<Side, HashSet<Aspect>>();
 
-        protected IEnumerable<Aspect> pros => ProsMatrix.Variables;
+        public Dictionary<Side, IEnumerable<Aspect>> Aspects => aspects.ToDictionary(x => x.Key, y => (IEnumerable<Aspect>)y.Value);
 
-        protected IEnumerable<Aspect> cons => ConsMatrix.Variables;
+        public Dictionary<Side, NamedSquareMatrix<Aspect, double>> GeneralisedComparisons => ExpertsComparisons.ToDictionary(x => x.Key, y => AgregateExpertMatrixes(y.Value, Aspects[y.Key]));
 
-        public NamedSquareMatrix<Aspect, double> ProsMatrix => AgregateExpertMatrixes(ExpertsProsMatrixes, pros);
-        public NamedSquareMatrix<Aspect, double> ConsMatrix => AgregateExpertMatrixes(ExpertsProsMatrixes, pros);
+        private Dictionary<Side, List<PairwiseComparisonsMatrix<Aspect>>> _expertsComparisons = new Dictionary<Side, List<PairwiseComparisonsMatrix<Aspect>>>();
 
-        private IList<PairwiseComparisonsMatrix<Aspect>> _expertsProsMatrixes = new List<PairwiseComparisonsMatrix<Aspect>>();
-        private IList<PairwiseComparisonsMatrix<Aspect>> _expertsConsMatrixes = new List<PairwiseComparisonsMatrix<Aspect>>();
+        public Dictionary<Side, IEnumerable<PairwiseComparisonsMatrix<Aspect>>> ExpertsComparisons => _expertsComparisons.ToDictionary(x => x.Key, y => (IEnumerable<PairwiseComparisonsMatrix<Aspect>>) y.Value);
 
-        public IEnumerable<PairwiseComparisonsMatrix<Aspect>> ExpertsProsMatrixes => _expertsProsMatrixes;
-        public IEnumerable<PairwiseComparisonsMatrix<Aspect>> ExpertsConsMatrixes => _expertsConsMatrixes;
 
-        internal IDictionary<Side, NamedSquareMatrix<Aspect, double>> matrixes
+        public Area()
         {
-            get
-            {
-                var result = new Dictionary<Side, NamedSquareMatrix<Aspect, double>>();
-                result.Add(Side.Strong, ProsMatrix);
-                result.Add(Side.Weak, ConsMatrix);
-                return result;
-            }
+            aspects.Add(Side.Strong, new HashSet<Aspect>());
+            aspects.Add(Side.Weak, new HashSet<Aspect>());
+            _expertsComparisons.Add(Side.Strong, new List<PairwiseComparisonsMatrix<Aspect>>());
+            _expertsComparisons.Add(Side.Weak, new List<PairwiseComparisonsMatrix<Aspect>>());
         }
 
-
-        public void AddProsAspect(Aspect aspect)
+        public void AddAspect(Aspect aspect, Side side)
         {
-            prosAspects.Add(aspect);
-            foreach(var matrix in ExpertsProsMatrixes)
-            {
-                matrix.AddVariable(aspect);
-            }
-        }
-        public void AddConsAspect(Aspect aspect)
-        {
-            consAspects.Add(aspect);
-            foreach (var matrix in ExpertsConsMatrixes)
+            aspects[side].Add(aspect);
+            foreach(var matrix in _expertsComparisons[side])
             {
                 matrix.AddVariable(aspect);
             }
         }
 
-        public void RemoveProsAspect(Aspect aspect)
+        public void RemoveAspect(Aspect aspect, Side side)
         {
-            prosAspects.Remove(aspect);
-            foreach (var matrix in ExpertsProsMatrixes)
-            {
-                matrix.RemoveVariable(aspect);
-            }
-        }
-        public void RemoveConsAspect(Aspect aspect)
-        {
-            consAspects.Remove(aspect);
-            foreach (var matrix in ExpertsConsMatrixes)
+            aspects[side].Remove(aspect);
+            foreach (var matrix in _expertsComparisons[side])
             {
                 matrix.RemoveVariable(aspect);
             }
         }
 
-        public void AddExpertOpinionAboutPros()
+        public void AddExpertOpinion(Side side)
         {
-            _expertsProsMatrixes.Add(new PairwiseComparisonsMatrix<Aspect>(prosAspects));
+            _expertsComparisons[side].Add(new PairwiseComparisonsMatrix<Aspect>(aspects[side]));
         }
 
-        public void AddExpertOpinionAboutCons()
-        {
-            _expertsConsMatrixes.Add(new PairwiseComparisonsMatrix<Aspect>(consAspects));
-        }
 
-        public void RemoveExpertOpinionAboutPros(PairwiseComparisonsMatrix<Aspect> matrix)
+        public void RemoveExpertOpinion(PairwiseComparisonsMatrix<Aspect> matrix, Side side)
         {
-            _expertsProsMatrixes.Remove(matrix);
+            _expertsComparisons[side].Remove(matrix);
         }
-
-        public void RemoveExpertOpinionAboutCons(PairwiseComparisonsMatrix<Aspect> matrix)
-        {
-            _expertsConsMatrixes.Remove(matrix);
-        }
-
 
         private static NamedSquareMatrix<Aspect, double> AgregateExpertMatrixes(IEnumerable<PairwiseComparisonsMatrix<Aspect>> matrixes, IEnumerable<Aspect> aspects)
         {

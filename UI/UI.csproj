@@ -55,6 +55,10 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="Gu.Wpf.DataGrid2D, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gu.Wpf.DataGrid2D.0.2.1.0\lib\net45\Gu.Wpf.DataGrid2D.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -75,10 +79,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\PairwiseComparisonsDataGrid.xaml.cs">
+      <DependentUpon>PairwiseComparisonsDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataArray.cs" />
+    <Compile Include="ScopeWindow.xaml.cs">
+      <DependentUpon>ScopeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ScopeWindows\EditNameWindow.xaml.cs">
+      <DependentUpon>EditNameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ScopeWindows\AspectEditWindow.xaml.cs">
+      <DependentUpon>AspectEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ScopeWindows\AspectsWindow.xaml.cs">
+      <DependentUpon>AspectsWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\PairwiseComparisonsDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GoalWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,6 +114,10 @@
       <DependentUpon>GoalWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ScopeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +135,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ScopeWindows\EditNameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ScopeWindows\AspectEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ScopeWindows\AspectsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +182,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -184,9 +224,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Windows\ScopeWindows\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -13,6 +13,7 @@ namespace Data.Matrixes
 
         protected TDataType[,] _data;
         public TDataType[,] GetDataArray() => _data;
+        public TDataType[,] Data => _data;
 
         protected IDictionary<TVariable, int> _variables;
         public TVariable[] Variables => _variables.Keys.ToArray();

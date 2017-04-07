@@ -6,13 +6,6 @@ using System.Threading.Tasks;
 
 namespace Data.BusinessStructures
 {
-    enum Side
-    {
-        Strong = 0,
-        Weak = 1
-    }
-
-
 
     [Serializable]
     public class Scope
@@ -75,14 +68,14 @@ namespace Data.BusinessStructures
             return result;
         }
 
-        private IDictionary<Area, double> CalculateLocalPrioritiesOfAreas(Side side)
+        public IDictionary<Area, double> CalculateLocalPrioritiesOfAreas(Side side)
         {
             var result = new Dictionary<Area, double>(Count);
             double sum = 0;
             foreach (var area in _areas)
             {
                 double prod = 1.0;
-                var prosPriorities = CalculateLocalPriorities(area.matrixes[side]);
+                var prosPriorities = CalculateLocalPriorities(area.GeneralisedComparisons[side]);
                 foreach (var aspect in prosPriorities.Keys)
                 {
                     prod *= Math.Pow(prosPriorities[aspect], 1.0 / prosPriorities.Count);
@@ -97,13 +90,13 @@ namespace Data.BusinessStructures
             return result;
         }
 
-        private IDictionary<Area, IDictionary<Aspect, double>> CalculateGlobalPrioritiesOfAspectsByAreas(Side side)
+        public IDictionary<Area, IDictionary<Aspect, double>> CalculateGlobalPrioritiesOfAspectsByAreas(Side side)
         {
             var localAreaPriorities = CalculateLocalPrioritiesOfAreas(side);
             var globalAspectPriorities = new Dictionary<Area, IDictionary<Aspect, double>>();
             foreach (var area in _areas)
             {
-                var globalAspectAreaPriorities = CalculateLocalPriorities(area.matrixes[side]);
+                var globalAspectAreaPriorities = CalculateLocalPriorities(area.GeneralisedComparisons[side]);
                 foreach (var aspect in globalAspectAreaPriorities.Keys)
                 {
                     globalAspectAreaPriorities[aspect] *= localAreaPriorities[area];
@@ -113,8 +106,6 @@ namespace Data.BusinessStructures
             return globalAspectPriorities;
         }
 
-        public IDictionary<Area, IDictionary<Aspect, double>> CalculateGlobalStrongPrioritiesOfAspectsByAreas() => CalculateGlobalPrioritiesOfAspectsByAreas(Side.Strong);
-        public IDictionary<Area, IDictionary<Aspect, double>> CalculateGlobalWeakPrioritiesOfAspectsByAreas() => CalculateGlobalPrioritiesOfAspectsByAreas(Side.Weak);
 
         public static IDictionary<Aspect, double> CalculateGlobalPrioritiesOfAspects(IDictionary<Area, IDictionary<Aspect, double>> globalAspectPrioritiesByAreas)
         {

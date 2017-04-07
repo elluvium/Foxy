@@ -222,5 +222,9 @@ namespace UI
             }
         }
 
+        private void dataGridGoalsTable_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

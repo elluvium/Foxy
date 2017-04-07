@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +14,9 @@ namespace Data.Matrixes
     public class PairwiseComparisonsMatrix<TVariable> : NamedSquareMatrix<TVariable, double>
     {
         [NonSerialized]
-        readonly int minimumPairwiseValue = 1;
+        static readonly int minimumPairwiseValue = 1;
         [NonSerialized]
-        readonly int maximumPairwiseValue = 9;
+        static readonly int maximumPairwiseValue = 9;
 
         public PairwiseComparisonsMatrix(HashSet<TVariable> variables) : base(variables, 1)
         {
@@ -70,7 +72,7 @@ namespace Data.Matrixes
             }
         }
 
-        private bool CheckPreference(int value)
+        public static bool CheckValidity(int value)
         {
             return minimumPairwiseValue <= value && value <= maximumPairwiseValue;
         }
@@ -82,9 +84,27 @@ namespace Data.Matrixes
             {
                 throw new ArgumentException();
             }
-            if(!CheckPreference(value))
+            if(!CheckValidity(value))
             {
                 throw new ArgumentOutOfRangeException("Pairwise value must be in range [1,9]");
+            }
+            if(source.Equals(target))
+            {
+                return;
+            }
+            base[source, target] = value;
+            base[target, source] = DefaultValue / value;
+        }
+
+        public void SetPreference(int source, int target, int value)
+        {
+            if (!CheckValidity(value))
+            {
+                throw new ArgumentOutOfRangeException("Pairwise value must be in range [1,9]");
+            }
+            if(source == target)
+            {
+                return;
             }
             base[source, target] = value;
             base[target, source] = DefaultValue / value;
@@ -113,7 +133,6 @@ namespace Data.Matrixes
             }
             return result;
         }
-
 
     }
 }

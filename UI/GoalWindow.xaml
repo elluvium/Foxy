@@ -36,7 +36,8 @@
           CanUserResizeRows="False"
           CanUserSortColumns="False"
           SelectionMode="Single"
-          SelectionUnit="FullRow">
+          SelectionUnit="FullRow"
+                           BeginningEdit="dataGridGoalsTable_BeginningEdit">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Index" Width="70" 
                              Binding="{Binding Path=Index}"></DataGridTextColumn>
