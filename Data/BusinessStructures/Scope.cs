@@ -139,8 +139,8 @@ namespace Data.BusinessStructures
         {
             double sum = theMostValuableGlobalPrioritiesOfAspects.Sum(x => x.Value);
             return theMostValuableGlobalPrioritiesOfAspects.Select(aspect => aspect.Value / sum
-                                                    * (aspect.Key.Intensity.NominalValue - aspect.Key.Intensity.LowerBorder)
-                                                    / (aspect.Key.Intensity.UpperBorder - aspect.Key.Intensity.LowerBorder))
+                                                    * (aspect.Key.Intensity.NominalValue - aspect.Key.Intensity.LowerBound)
+                                                    / (aspect.Key.Intensity.UpperBound - aspect.Key.Intensity.LowerBound))
                                                     .Sum();
         }
 
