@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="ScopeWindow" Height="444.405" Width="606.122" WindowStartupLocation="CenterScreen" Icon="Images/ico.png" >
+        x:Name="InnerScopeWindow"
+        MinHeight="444" Height="{Binding ElementName=InnerScopeWindow, Path=MinHeight}" 
+        MinWidth="606"  Width="{Binding ElementName=InnerScopeWindow, Path=MinWidth}"
+        Title="ScopeWindow" WindowStartupLocation="CenterScreen" Icon="Images/ico.png" >
     <Grid>
         <Menu x:Name="menu" Height="20" VerticalAlignment="Top" Margin="0,0,0.333,0">
             <MenuItem x:Name="menuFile" Header="File" Height="20">
