@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI.Windows"
         mc:Ignorable="d"
         x:Name="NewBusinessSystemWindow" 
-        MinHeight="585" Height="{Binding ElementName=NewBusinessSystemWindow, Path=MinHeight}" 
+        MinHeight="430" Height="{Binding ElementName=NewBusinessSystemWindow, Path=MinHeight}" 
         MinWidth="410"  Width="{Binding ElementName=NewBusinessSystemWindow, Path=MinWidth}"
         Title="New Business System" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
     <Grid>
@@ -17,8 +17,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" Name="TextBoxesRow"/>
             <RowDefinition Height="*" Name="FunctionalZoneRow"/>
-            <RowDefinition Height="*" Name="KeyAreasRow"/>
-            <RowDefinition Height="*" Name="GoalsRow"/>
             <RowDefinition Height="Auto" Name="ButtonsRow"/>
         </Grid.RowDefinitions>
         <Label Content="Title:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="1 3 1 1"/>
@@ -30,7 +28,7 @@
         <TextBox x:Name="VisionTextbox" Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 33 7 1" ></TextBox>
         <TextBox x:Name="MissionTextbox" Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 58 7 1" ></TextBox>
         <TextBox x:Name="GlobalGoalTextbox" Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 83 7 1" ></TextBox>
-        <Separator Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="4 120 7 1" />
+        <!--<Separator Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="4 120 7 1" />
 
         <Label Content="Functional Zones" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="1 1 1 1"/>
         <DataGrid Loaded="FuncZoneDataGrid_Loaded" x:Name="FuncZoneDataGrid" CanUserAddRows="True" CanUserDeleteRows="True" ColumnWidth="*" HeadersVisibility="None" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1"/>
@@ -41,8 +39,8 @@
         <DataGrid Loaded="KeyAreasDataGrid_Loaded" x:Name="KeyAreasDataGrid" CanUserAddRows="True" CanUserDeleteRows="True" ColumnWidth="*" HeadersVisibility="None" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1"/>
 
         <Label Content="Goals" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="1 1 1 1"/>
-        <Button x:Name="ImportButton" Content="Import from .xlsx..." FontSize="10" Grid.Column="1" Grid.Row="3" Width="90" Height="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 5 7 15" Click="ImportButton_Click" />
-        <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="GoalsTable" Grid.Row="3" Grid.Column="0" MinHeight="50" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1">
+        <Button x:Name="ImportButton" Content="Import from .xlsx..." FontSize="10" Grid.Column="1" Grid.Row="3" Width="90" Height="18" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 5 7 15" Click="ImportButton_Click" /> -->
+        <DataGrid CanUserDeleteRows="True" CanUserAddRows="True" AutoGenerateColumns="False" x:Name="GoalsTable" Grid.Row="1" Grid.Column="0" MinHeight="50" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7 25 7 1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Index" Width="70" 
                              Binding="{Binding Path=Index}"></DataGridTextColumn>
@@ -52,7 +50,7 @@
                              Binding="{Binding Path=ProvidesFor}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" Grid.Row="4" Width="70" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5 10 7 15" Click="CancelButton_Click" />
-        <Button x:Name="OkButton" Content="OK" Grid.Column="1" Grid.Row="4" Width="70" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5 10 80 15" Click="OkButton_Click" />
+        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" Grid.Row="2" Width="70" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 10 7 15" Click="CancelButton_Click" />
+        <Button x:Name="OkButton" Content="OK" Grid.Column="1" Grid.Row="2" Width="70" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5 10 80 15" Click="OkButton_Click" />
     </Grid>
 </Window>

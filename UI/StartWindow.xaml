@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         x:Name="StartBSWindow"
-        MinHeight="358" Height="{Binding ElementName=StartBSWindow, Path=MinHeight}" 
+        MinHeight="363" Height="{Binding ElementName=StartBSWindow, Path=MinHeight}" 
         MinWidth="384"  Width="{Binding ElementName=StartBSWindow, Path=MinWidth}"
         Title="Business system" WindowStartupLocation="CenterScreen" Icon="Images/ico.png">
     <Grid>
