@@ -34,17 +34,8 @@ namespace Data.BusinessStructures
             _areas.Remove(area);
         }
 
-        public IDictionary<Area, double> CalculateLocalStrongPrioritiesOfAreas()
-        {
-            return CalculateLocalPrioritiesOfAreas(Side.Strong);
-        }
 
-        public IDictionary<Area, double> CalculateLocalWeakPrioritiesOfAreas()
-        {
-            return CalculateLocalPrioritiesOfAreas(Side.Weak);
-        }
-
-        public static IDictionary<Aspect, double> CalculateLocalPriorities(Matrixes.NamedSquareMatrix<Aspect,double> matrix)
+        private static IDictionary<Aspect, double> CalculateLocalPrioritiesOfAspectsOfArea(Matrixes.NamedSquareMatrix<Aspect,double> matrix)
         {
             var variables = matrix.Variables;
             var result = new Dictionary<Aspect, double>(variables.Count());
@@ -68,42 +59,52 @@ namespace Data.BusinessStructures
             return result;
         }
 
-        public IDictionary<Area, double> CalculateLocalPrioritiesOfAreas(Side side)
+
+        public static IDictionary<Area, IDictionary<Aspect, double>> CalculateLocalPrioritiesOfAspectsByAreas(IEnumerable<Area> areas, Side side)
         {
-            var result = new Dictionary<Area, double>(Count);
+            return areas.ToDictionary(x => x, y => CalculateLocalPrioritiesOfAspectsOfArea(y.GeneralisedComparisons[side]));
+        }
+
+
+
+        public static IDictionary<Area, double> CalculatePrioritiesOfAreas(IDictionary<Area, IDictionary<Aspect, double>> localAspectPrioritiesByAreas, Side side)
+        {
+            var result = new Dictionary<Area, double>(localAspectPrioritiesByAreas.Count());
             double sum = 0;
-            foreach (var area in _areas)
+            foreach (var area in localAspectPrioritiesByAreas)
             {
                 double prod = 1.0;
-                var prosPriorities = CalculateLocalPriorities(area.GeneralisedComparisons[side]);
-                foreach (var aspect in prosPriorities.Keys)
+                foreach (var aspect in area.Key.Aspects[side])
                 {
-                    prod *= Math.Pow(prosPriorities[aspect], 1.0 / prosPriorities.Count);
+                    prod *= Math.Pow(area.Value[aspect], 1.0 / area.Value.Count);
                 }
-                result.Add(area, prod);
+                result.Add(area.Key, prod);
                 sum += prod;
             }
-            foreach (var area in _areas)
+            foreach (var area in localAspectPrioritiesByAreas)
             {
-                result[area] /= sum;
+                result[area.Key] /= sum;
             }
             return result;
         }
 
-        public IDictionary<Area, IDictionary<Aspect, double>> CalculateGlobalPrioritiesOfAspectsByAreas(Side side)
+        public static IDictionary<Area, IDictionary<Aspect, double>> CalculateGlobalPrioritiesOfAspectsByAreas
+            (IDictionary<Area, double> prioritiesOfAreas,
+            IDictionary<Area, IDictionary<Aspect, double>> localAspectPrioritiesByAreas,
+            Side side)
         {
-            var localAreaPriorities = CalculateLocalPrioritiesOfAreas(side);
-            var globalAspectPriorities = new Dictionary<Area, IDictionary<Aspect, double>>();
-            foreach (var area in _areas)
+            var globalAspectPrioritiesByAreas = new Dictionary<Area, IDictionary<Aspect, double>>();
+            foreach (var area in prioritiesOfAreas.Keys)
             {
-                var globalAspectAreaPriorities = CalculateLocalPriorities(area.GeneralisedComparisons[side]);
-                foreach (var aspect in globalAspectAreaPriorities.Keys)
+                var globalAspectAreaPriorities = localAspectPrioritiesByAreas[area].ToDictionary(x => x.Key, y => y.Value);
+                IEnumerable<Aspect> aspects = globalAspectAreaPriorities.Keys.ToList();
+                foreach (var aspect in aspects)
                 {
-                    globalAspectAreaPriorities[aspect] *= localAreaPriorities[area];
+                    globalAspectAreaPriorities[aspect] *= prioritiesOfAreas[area];
                 }
-                globalAspectPriorities.Add(area, globalAspectAreaPriorities);
+                globalAspectPrioritiesByAreas.Add(area, globalAspectAreaPriorities);
             }
-            return globalAspectPriorities;
+            return globalAspectPrioritiesByAreas;
         }
 
 
@@ -112,7 +113,7 @@ namespace Data.BusinessStructures
             Dictionary<Aspect, double> globalAspectPriorities = new Dictionary<Aspect, double>();
             foreach (var areaAspect in globalAspectPrioritiesByAreas)
             {
-                globalAspectPriorities.Union(areaAspect.Value);
+                globalAspectPriorities = globalAspectPriorities.Union(areaAspect.Value).ToDictionary(X => X.Key, Y => Y.Value);
             }
             return globalAspectPriorities;
         }

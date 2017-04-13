@@ -79,10 +79,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\GroupedDataGrid.xaml.cs">
+      <DependentUpon>GroupedDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PairwiseComparisonsDataGrid.xaml.cs">
       <DependentUpon>PairwiseComparisonsDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DataArray.cs" />
+    <Compile Include="Models\ScopeModels.cs" />
     <Compile Include="ScopeWindow.xaml.cs">
       <DependentUpon>ScopeWindow.xaml</DependentUpon>
     </Compile>
@@ -98,6 +102,10 @@
     <Compile Include="Windows\ScopeWindows\AspectsWindow.xaml.cs">
       <DependentUpon>AspectsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\GroupedDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PairwiseComparisonsDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,7 +160,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AvailableGoalsForProvidingModel.cs" />
+    <Compile Include="Models\GoalModels.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>

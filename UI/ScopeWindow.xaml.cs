@@ -58,10 +58,7 @@ namespace UI
             Close();
         }
 
-        private void menuEvaluate_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void buttonAddArea_Click(object sender, RoutedEventArgs e)
         {
@@ -125,6 +122,74 @@ namespace UI
         private void dataGridArea_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void menuEvaluate_Click(object sender, RoutedEventArgs e)
+        {
+            // ------------------------------------------------------------------------------------------------------
+            //                                          CALCULATIONS
+            // ------------------------------------------------------------------------------------------------------
+            var localAspectsByAreasStrong = Scope.CalculateLocalPrioritiesOfAspectsByAreas(_scope.Areas, Side.Strong);
+            var localAspectsByAreasWeak = Scope.CalculateLocalPrioritiesOfAspectsByAreas(_scope.Areas, Side.Weak);
+            var areasStrong = Scope.CalculatePrioritiesOfAreas(localAspectsByAreasStrong, Side.Strong);
+            var areasWeak = Scope.CalculatePrioritiesOfAreas(localAspectsByAreasWeak, Side.Weak);
+            var globalAspectsStrong = Scope.CalculateGlobalPrioritiesOfAspects(Scope.CalculateGlobalPrioritiesOfAspectsByAreas(areasStrong, localAspectsByAreasStrong, Side.Strong));
+            var globalAspectsWeak = Scope.CalculateGlobalPrioritiesOfAspects(Scope.CalculateGlobalPrioritiesOfAspectsByAreas(areasWeak, localAspectsByAreasWeak, Side.Weak));
+            var bestAspectsStrong = Scope.ExtractTheMostValueableGlobalPrioritiesOfAspects(globalAspectsStrong);
+            var bestAspectsWeak = Scope.ExtractTheMostValueableGlobalPrioritiesOfAspects(globalAspectsWeak);
+            double positiveMark = Scope.CalculateStrategicEstimation(bestAspectsStrong);
+            double negativeMark = 1 - Scope.CalculateStrategicEstimation(bestAspectsWeak);
+            double systemParameter = Scope.CalculateSystemParameter(positiveMark, negativeMark);
+            // ------------------------------------------------------------------------------------------------------
+            //                                  Filling datagrids and textboxes
+            // ------------------------------------------------------------------------------------------------------
+            dataGridPrioritiesOfAreas.ItemsSource = areasStrong.Join(areasWeak, x => x.Key, y => y.Key, (x1, y1) => new Models.AreaModel(x1.Key) { StrongPriority = x1.Value, WeakPriority = y1.Value }).ToList();
+            dataGridLocalStrongPrioritiesOfAspects.ItemsSource = createItemsSourceForGroupedDataGrid(localAspectsByAreasStrong);
+            dataGridLocalWeakPrioritiesOfAspects.ItemsSource = createItemsSourceForGroupedDataGrid(localAspectsByAreasWeak);
+            dataGridGlobalStrongPrioritiesOfAspects.ItemsSource = createItemsSourceForDataGridWithGlobalAspects(globalAspectsStrong);
+            dataGridGlobalWeakPrioritiesOfAspects.ItemsSource = createItemsSourceForDataGridWithGlobalAspects(globalAspectsWeak);
+            dataGridBestGlobalStrongPrioritiesOfAspects.ItemsSource = createItemsSourceForDataGridWithGlobalAspects(bestAspectsStrong);
+            dataGridBestGlobalWeakPrioritiesOfAspects.ItemsSource = createItemsSourceForDataGridWithGlobalAspects(bestAspectsWeak);
+            fillSysParams(positiveMark, negativeMark, systemParameter);
+
+        }
+
+        private IEnumerable<Models.AspectModel> createItemsSourceForDataGridWithGlobalAspects(IDictionary<Aspect, double> data)
+        {
+            return data.Select(x => new Models.AspectModel(x.Key, x.Value));
+        }
+
+        private ListCollectionView createItemsSourceForGroupedDataGrid(IDictionary<Area, IDictionary<Aspect, double>> data)
+        {
+            var convertedData = data
+                            .Select(x => x.Value.Select(y => new Models.AspectModelByArea(y.Key, x.Key, y.Value)))
+                            .Aggregate((x, y) => x.Union(y))
+                            .ToList();
+            var listColView = new ListCollectionView(convertedData);
+            listColView.GroupDescriptions.Add(new PropertyGroupDescription("Area"));
+            return listColView;
+        }
+
+        private void fillSysParams(double positiveMark, double negativeMark, double systemParameter)
+        {
+            textBoxOptimisticalMark.Text = positiveMark.ToString();
+            textBoxPessimisticalMark.Text = negativeMark.ToString();
+            textBoxStrategicParameter.Text = systemParameter.ToString();
+        }
+
+        private void buttonCalcSysParams_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dataGridAspectsWeakBestPrioritiesGlobalMenuEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dataGridAspectsStrongBestPrioritesGlobalMenuEdit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

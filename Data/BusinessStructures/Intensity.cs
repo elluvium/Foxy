@@ -22,10 +22,10 @@ namespace Data.BusinessStructures
             }
             private set
             {
-                if(_lowerBound > _nominalValue || _lowerBound == _upperBound)
-                {
-                    throw new ArgumentException("LowerBound < NominalValue < UpperBound");
-                }
+                //if(_lowerBound > _nominalValue || _lowerBound == _upperBound)
+                //{
+                //    throw new ArgumentException("LowerBound < NominalValue < UpperBound");
+                //}
                 _lowerBound = value;
             }
         }
@@ -38,10 +38,10 @@ namespace Data.BusinessStructures
             }
             private set
             {
-                if (_upperBound < _nominalValue || _lowerBound == _upperBound)
-                {
-                    throw new ArgumentException();
-                }
+                //if (_upperBound < _nominalValue || _lowerBound == _upperBound)
+                //{
+                //    throw new ArgumentException();
+                //}
                 _upperBound = value;
             }
         }
@@ -54,10 +54,10 @@ namespace Data.BusinessStructures
             }
             private set
             {
-                if (_lowerBound > _nominalValue || _nominalValue > _upperBound)
-                {
-                    throw new ArgumentException();
-                }
+                //if (_lowerBound > _nominalValue || _nominalValue > _upperBound)
+                //{
+                //    throw new ArgumentException();
+                //}
                 _nominalValue = value;
             }
         }
