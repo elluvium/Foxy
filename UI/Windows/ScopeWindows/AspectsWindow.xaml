@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:UI.Windows.ScopeWindows"
         xmlns:dataGrid2D="http://gu.se/DataGrid2D"
         mc:Ignorable="d"
-        Title="AspectsWindow" Height="368.207" Width="552.865" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
+        x:Name="AspectssWindow"
+        MinHeight="368" Height="{Binding ElementName=AspectssWindow, Path=MinHeight}" 
+        MinWidth="552"  Width="{Binding ElementName=AspectssWindow, Path=MinWidth}"
+        Title="AspectsWindow" WindowStartupLocation="CenterScreen" Icon="/UI;component/Images/ico.png">
     <Grid>
         <TabControl x:Name="tabControl" Margin="0,20,0,-0.333">
             <TabItem Header="Aspects">
