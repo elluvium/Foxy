@@ -98,7 +98,7 @@ namespace Data
                     {
                         throw new InvalidCastException("Wrong format of ProvidesFor field: Undescribed indexes detected.");
                     }
-                    matrix[matchGoalExcel, goalExcel] = true;
+                    matrix[goalExcel, matchGoalExcel] = true;
                 }
             }
             return matrix;

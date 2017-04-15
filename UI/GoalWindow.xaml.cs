@@ -32,7 +32,7 @@ namespace UI
     {
         public BusinessSystem currentBS;
 
-        IEnumerable<Models.GoalModelWithProvidings> Goals => currentBS.GoalsIncidenceMatrix.Variables.Select(x => new GoalModelWithProvidings(x, currentBS.GoalsIncidenceMatrix.GetAncestors(x)));
+        IEnumerable<Models.GoalModelWithProvidings> Goals => currentBS.GoalsIncidenceMatrix.Variables.Select(x => new GoalModelWithProvidings(x, currentBS.GoalsIncidenceMatrix.GetDescendants(x)));
 
         public GoalWindow(BusinessSystem businessSystem)
         {
@@ -64,7 +64,7 @@ namespace UI
                 goal = windowEdit.Goal;
                 foreach(var goalmodel in windowEdit.ProvidedFor)
                 {
-                    currentBS.GoalsIncidenceMatrix[goalmodel.ToGoal(), goal] = goalmodel.ProvidedBy;
+                    currentBS.GoalsIncidenceMatrix[goal, goalmodel.ToGoal()] = goalmodel.ProvidedBy;
                 }
             }
             dataGridGoalsTable.ItemsSource = Goals;
@@ -109,7 +109,7 @@ namespace UI
                 currentBS.GoalsIncidenceMatrix.AddVariable(goal);
                 foreach (var goalmodel in windowEdit.ProvidedFor)
                 {
-                    currentBS.GoalsIncidenceMatrix[goalmodel.ToGoal(), goal] = goalmodel.ProvidedBy;
+                    currentBS.GoalsIncidenceMatrix[goal, goalmodel.ToGoal()] = goalmodel.ProvidedBy;
                 }
                 dataGridGoalsTable.ItemsSource = Goals;
             }
