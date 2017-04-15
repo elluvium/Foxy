@@ -48,10 +48,10 @@
         <Label Content="Mission:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="1 120 1 1"/>
         <Label Content="Global goal:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="1 170 1 1"/>
 
-        <TextBox x:Name="TitleTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2 8 7 1" FontSize="15" TextWrapping="Wrap" />
-        <TextBox x:Name="VisionTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2 45,8,0" FontSize="15" TextWrapping="Wrap" />
-        <TextBox x:Name="MissionTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2,96,8,0" FontSize="15" TextWrapping="Wrap" />
-        <TextBox x:Name="GlobalGoalTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2 150 8 0" FontSize="15" TextWrapping="Wrap" />
+        <TextBox x:Name="TitleTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2 8 7 1" FontSize="15" TextWrapping="Wrap" />
+        <TextBox x:Name="VisionTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="45" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2 45,8,0" FontSize="15" TextWrapping="Wrap" />
+        <TextBox x:Name="MissionTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="45" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2,96,8,0" FontSize="15" TextWrapping="Wrap" />
+        <TextBox x:Name="GlobalGoalTextbox" IsEnabled="False" Grid.Row="1" Grid.Column="1" Height="45" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2 150 8 0" FontSize="15" TextWrapping="Wrap" />
         <Button x:Name="buttonGoals" Content="Goals" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="2 208 0 0" VerticalAlignment="Top" Width="139" Height="89" Click="buttonGoals_Click" IsEnabled="False"/>
         <Button x:Name="buttonInnerScope" Grid.Row="1" Grid.Column="1" Content="Functional areas" HorizontalAlignment="Stretch" Margin="150 208 8 0" VerticalAlignment="Top" Height="46" IsEnabled="False" Click="buttonInnerScope_Click" />
         <Button x:Name="buttonAmbient" Grid.Row="1" Grid.Column="1" Content="Ambient" HorizontalAlignment="Stretch" Margin="150 255 8 0" VerticalAlignment="Top" Height="42" IsEnabled="False" Click="buttonAmbient_Click"/>
