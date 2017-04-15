@@ -32,14 +32,14 @@
             <TabItem Header="Goals Table">
                 <DataGrid  x:Name="dataGridGoalsTable" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                            AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          CanUserReorderColumns="False"
-          CanUserResizeColumns="False"
-          CanUserResizeRows="False"
-          CanUserSortColumns="False"
-          SelectionMode="Single"
-          SelectionUnit="FullRow"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="True"
+                              CanUserResizeRows="False"
+                              CanUserSortColumns="False"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow"
                            BeginningEdit="dataGridGoalsTable_BeginningEdit">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Index" Width="70" 
