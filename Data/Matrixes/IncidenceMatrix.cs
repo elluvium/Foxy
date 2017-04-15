@@ -59,6 +59,10 @@ namespace Data.Matrixes
             }
             set
             {
+                if (base[row, column] == value)
+                {
+                    return;
+                }
                 if (value && CheckForCycles(_variables[row], _variables[column]))
                 {
                     throw new ArithmeticException("Tree structure graph: cycles are prohibited.");
@@ -76,6 +80,10 @@ namespace Data.Matrixes
 
             set
             {
+                if(base[row,column] == value)
+                {
+                    return;
+                }
                 if (value && CheckForCycles(row, column))
                 {
                     throw new ArithmeticException("Tree structure graph: cycles are prohibited.");
@@ -122,7 +130,7 @@ namespace Data.Matrixes
             return result;
         }
 
-        public IEnumerable<TVariable> GetAncestors(TVariable variable)
+        public IEnumerable<TVariable> GetDescendants(TVariable variable)
         {
             HashSet<TVariable> variables = new HashSet<TVariable>();
             foreach(var element in _variables.Keys)
@@ -137,7 +145,7 @@ namespace Data.Matrixes
 
         
 
-        public IEnumerable<TVariable> GetDescendants(TVariable variable)
+        public IEnumerable<TVariable> GetAncestors(TVariable variable)
         {
             HashSet<TVariable> variables = new HashSet<TVariable>();
             foreach (var element in _variables.Keys)
@@ -155,7 +163,7 @@ namespace Data.Matrixes
             IEnumerable<TVariable> variables = GetDescendants(variable);
             foreach(var element in variables)
             {
-                variables.Union(GetAllDescendants(element));
+                variables = variables.Union(GetAllDescendants(element));
             }
             return variables;
         }

@@ -32,7 +32,7 @@ namespace UI
     {
         public BusinessSystem currentBS;
 
-        IEnumerable<Models.GoalModelWithProvidings> Goals => currentBS.GoalsIncidenceMatrix.Variables.Select(x => new GoalModelWithProvidings(x, currentBS.GoalsIncidenceMatrix.GetDescendants(x)));
+        IEnumerable<Models.GoalModelWithProvidings> Goals => currentBS.GoalsIncidenceMatrix.Variables.Select(x => new GoalModelWithProvidings(x, currentBS.GoalsIncidenceMatrix.GetAncestors(x)));
 
         public GoalWindow(BusinessSystem businessSystem)
         {
